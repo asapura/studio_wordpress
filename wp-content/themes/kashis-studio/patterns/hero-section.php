@@ -6,36 +6,34 @@
  * Description: トップページのメインビジュアルセクション
  */
 ?>
+<!-- wp:cover {"url":"","dimRatio":40,"overlayColor":"blue-500","minHeight":400,"align":"full"} -->
+<div class="wp-block-cover alignfull" style="min-height:400px"><span aria-hidden="true" class="wp-block-cover__background has-blue-500-background-color has-background-dim-40 has-background-dim"></span><div class="wp-block-cover__inner-container">
+	<!-- wp:group {"layout":{"type":"constrained"}} -->
+	<div class="wp-block-group">
+		<!-- wp:heading {"textAlign":"center","level":1,"textColor":"neutral-0"} -->
+		<h1 class="wp-block-heading has-text-align-center has-neutral-0-color has-text-color">カシスタジオ</h1>
+		<!-- /wp:heading -->
 
-<!-- wp:cover {"url":"<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/images/hero-placeholder.jpg","dimRatio":50,"overlayColor":"primary","gradient":"vivid-cyan-blue-to-vivid-purple","align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|80","bottom":"var:preset|spacing|80"}}}} -->
-<div class="wp-block-cover alignfull">
-    <span aria-hidden="true" class="wp-block-cover__background has-primary-background-color has-background-dim has-background-gradient has-vivid-cyan-blue-to-vivid-purple-gradient-background"></span>
-    <div class="wp-block-cover__inner-container">
+		<!-- wp:paragraph {"align":"center","textColor":"neutral-0"} -->
+		<p class="has-text-align-center has-neutral-0-color has-text-color">都心で気軽に使える本格レンタルスタジオ<br>ダンス・ヨガ・演劇・撮影まで幅広く対応</p>
+		<!-- /wp:paragraph -->
 
-        <!-- wp:heading {"textAlign":"center","level":1,"style":{"typography":{"fontSize":"3.5rem","fontWeight":"800"},"spacing":{"margin":{"bottom":"var:preset|spacing|40"}}}} -->
-        <h1 class="has-text-align-center" style="margin-bottom:var(--wp--preset--spacing--40);font-size:3.5rem;font-weight:800">カシスタジオ</h1>
-        <!-- /wp:heading -->
+		<!-- wp:spacer {"height":"24px"} -->
+		<div style="height:24px" aria-hidden="true" class="wp-block-spacer"></div>
+		<!-- /wp:spacer -->
 
-        <!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"1.375rem"},"spacing":{"margin":{"bottom":"var:preset|spacing|50"}}}} -->
-        <p class="has-text-align-center" style="margin-bottom:var(--wp--preset--spacing--50);font-size:1.375rem">都心で気軽に使える本格レンタルスタジオ<br>ダンス・ヨガ・演劇・撮影まで幅広く対応</p>
-        <!-- /wp:paragraph -->
+		<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
+		<div class="wp-block-buttons">
+			<!-- wp:button {"backgroundColor":"green-400","textColor":"neutral-0"} -->
+			<div class="wp-block-button"><a class="wp-block-button__link has-neutral-0-color has-green-400-background-color has-text-color has-background wp-element-button" href="/reservation">今すぐ予約</a></div>
+			<!-- /wp:button -->
 
-        <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"blockGap":"var:preset|spacing|40"}}} -->
-        <div class="wp-block-buttons">
-            <!-- wp:button {"className":"is-style-fill"} -->
-            <div class="wp-block-button is-style-fill">
-                <a class="wp-block-button__link wp-element-button">今すぐ予約</a>
-            </div>
-            <!-- /wp:button -->
-
-            <!-- wp:button {"className":"is-style-outline"} -->
-            <div class="wp-block-button is-style-outline">
-                <a class="wp-block-button__link wp-element-button">スタジオを見る</a>
-            </div>
-            <!-- /wp:button -->
-        </div>
-        <!-- /wp:buttons -->
-
-    </div>
-</div>
+			<!-- wp:button {"backgroundColor":"neutral-0","textColor":"blue-500","className":"is-style-outline"} -->
+			<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-blue-500-color has-neutral-0-background-color has-text-color has-background wp-element-button" href="#features">スタジオを見る</a></div>
+			<!-- /wp:button -->
+		</div>
+		<!-- /wp:buttons -->
+	</div>
+	<!-- /wp:group -->
+</div></div>
 <!-- /wp:cover -->
