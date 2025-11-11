@@ -1,0 +1,390 @@
+/*
+Theme Name: Kashis Studio
+Theme URI: https://kashis-studio.example.com
+Description: カシスタジオ専用のカスタムテーマ。Twenty Twenty-Fourをベースにレンタルスタジオサイト向けにカスタマイズ。
+Author: Studio Admin
+Author URI: https://kashis-studio.example.com
+Template: twentytwentyfour
+Version: 1.0.0
+Requires at least: 6.4
+Tested up to: 6.8
+Requires PHP: 7.2
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: kashis-studio
+*/
+
+/* ==========================================================================
+   カシスタジオ カスタムスタイル
+   ========================================================================== */
+
+/* ブランドカラー（ノアスタジオ風） */
+:root {
+  --color-primary: #2c5aa0;
+  --color-secondary: #f39c12;
+  --color-text: #333333;
+  --color-text-light: #666666;
+  --color-background: #ffffff;
+  --color-background-light: #f8f9fa;
+  --color-accent: #e74c3c;
+  --color-success: #27ae60;
+}
+
+/* グローバルスタイル */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", Meiryo, sans-serif;
+  color: var(--color-text);
+  line-height: 1.8;
+}
+
+/* ヘッダー */
+.site-header {
+  background: var(--color-background);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* ナビゲーション */
+.main-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.main-navigation a {
+  color: var(--color-text);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease;
+}
+
+.main-navigation a:hover {
+  color: var(--color-primary);
+}
+
+/* ボタン */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #1e4278;
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: #d68910;
+}
+
+/* ヒーローセクション */
+.hero-section {
+  position: relative;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-primary) 0%, #1e4278 100%);
+  color: white;
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.hero-content p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+/* セクション */
+.section {
+  padding: 4rem 2rem;
+}
+
+.section-light {
+  background-color: var(--color-background-light);
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+/* グリッドレイアウト */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* カード */
+.card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+}
+
+.card-text {
+  color: var(--color-text-light);
+  line-height: 1.6;
+}
+
+/* 料金テーブル */
+.price-table {
+  width: 100%;
+  max-width: 900px;
+  margin: 2rem auto;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.price-table thead {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.price-table th,
+.price-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.price-table tbody tr:hover {
+  background-color: var(--color-background-light);
+}
+
+.price-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* スタジオ情報 */
+.studio-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 2rem auto;
+}
+
+.studio-info-item {
+  padding: 1.5rem;
+  background: var(--color-background-light);
+  border-radius: 8px;
+  border-left: 4px solid var(--color-primary);
+}
+
+.studio-info-label {
+  font-weight: bold;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.studio-info-value {
+  color: var(--color-text);
+  font-size: 1.1rem;
+}
+
+/* アクセスマップ */
+.access-map {
+  width: 100%;
+  height: 400px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 2rem 0;
+}
+
+/* フッター */
+.site-footer {
+  background-color: #2c3e50;
+  color: white;
+  padding: 3rem 2rem 1rem;
+  margin-top: 4rem;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+  margin-bottom: 1rem;
+  color: var(--color-secondary);
+}
+
+.footer-section a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 0.3rem 0;
+  transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+  color: var(--color-secondary);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .studio-info {
+    grid-template-columns: 1fr;
+  }
+
+  .main-navigation {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+/* 予約システム埋め込みエリア */
+.reservation-embed {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--color-background-light);
+  border-radius: 8px;
+  min-height: 400px;
+}
+
+.reservation-placeholder {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--color-text-light);
+}
+
+/* FAQ */
+.faq-item {
+  background: white;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.faq-question {
+  padding: 1.5rem;
+  font-weight: bold;
+  color: var(--color-primary);
+  background: var(--color-background-light);
+  cursor: pointer;
+}
+
+.faq-answer {
+  padding: 1.5rem;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+/* お知らせ */
+.news-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.news-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+  transition: background-color 0.3s ease;
+}
+
+.news-item:hover {
+  background-color: var(--color-background-light);
+}
+
+.news-date {
+  flex-shrink: 0;
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+}
+
+.news-title {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.news-title:hover {
+  text-decoration: underline;
+}

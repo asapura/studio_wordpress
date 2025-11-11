@@ -1,0 +1,226 @@
+{
+    "key": "group_studio_room_details",
+    "title": "スタジオルーム詳細",
+    "fields": [
+        {
+            "key": "field_studio_gallery",
+            "label": "ギャラリー",
+            "name": "studio_gallery",
+            "type": "gallery",
+            "instructions": "スタジオの写真を複数アップロードしてください（推奨：横1200px以上）",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "insert": "append",
+            "library": "all",
+            "min": "",
+            "max": "",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "jpg,jpeg,png,webp"
+        },
+        {
+            "key": "field_studio_size",
+            "label": "広さ",
+            "name": "studio_size",
+            "type": "text",
+            "instructions": "スタジオの広さを入力してください（例：30㎡、15坪）",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "例：30㎡",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_studio_capacity",
+            "label": "収容人数",
+            "name": "studio_capacity",
+            "type": "number",
+            "instructions": "最大収容人数を入力してください",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "名",
+            "min": 1,
+            "max": "",
+            "step": 1
+        },
+        {
+            "key": "field_studio_base_price",
+            "label": "基本料金（1時間）",
+            "name": "studio_base_price",
+            "type": "number",
+            "instructions": "1時間あたりの基本料金を入力してください",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "¥",
+            "append": "",
+            "min": 0,
+            "max": "",
+            "step": 100
+        },
+        {
+            "key": "field_studio_floor",
+            "label": "フロア",
+            "name": "studio_floor",
+            "type": "text",
+            "instructions": "フロア情報を入力してください（例：4F、地下1F）",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "例：4F",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_studio_features",
+            "label": "スタジオの特徴",
+            "name": "studio_features",
+            "type": "wysiwyg",
+            "instructions": "スタジオの特徴や強みを記載してください",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_studio_equipment_list",
+            "label": "設備リスト",
+            "name": "studio_equipment_list",
+            "type": "checkbox",
+            "instructions": "スタジオに備わっている設備をチェックしてください",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "mirror": "全面鏡張り",
+                "sound_system": "音響システム",
+                "bluetooth": "Bluetooth対応スピーカー",
+                "microphone": "マイク",
+                "air_conditioner": "エアコン",
+                "wifi": "Wi-Fi",
+                "locker": "ロッカー",
+                "changing_room": "更衣室",
+                "shower": "シャワー",
+                "piano": "ピアノ",
+                "ballet_bar": "バレエバー",
+                "yoga_mat": "ヨガマット",
+                "projector": "プロジェクター",
+                "whiteboard": "ホワイトボード",
+                "chair": "椅子・テーブル"
+            },
+            "allow_custom": 1,
+            "default_value": [],
+            "layout": "vertical",
+            "toggle": 0,
+            "return_format": "value",
+            "save_custom": 1
+        },
+        {
+            "key": "field_studio_usage_notes",
+            "label": "利用上の注意事項",
+            "name": "studio_usage_notes",
+            "type": "textarea",
+            "instructions": "利用時の注意事項があれば記載してください",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "例：土足禁止、飲食は水のみ可、など",
+            "maxlength": "",
+            "rows": 4,
+            "new_lines": "wpautop"
+        },
+        {
+            "key": "field_studio_display_order",
+            "label": "表示順序",
+            "name": "studio_display_order",
+            "type": "number",
+            "instructions": "複数のスタジオがある場合の表示順序（数字が小さいほど前に表示されます）",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": 1,
+            "max": "",
+            "step": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "studio_room"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "スタジオルームの詳細情報を管理するカスタムフィールド"
+}
