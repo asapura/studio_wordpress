@@ -831,18 +831,88 @@ function kashis_studio_help_page() {
     ?>
     <div class="wrap">
         <h1>ブロックエディターの使い方</h1>
-        
-        <div class="card" style="max-width: 100%;">
+
+        <div class="card" style="max-width: 100%; background: #f0f9ff; border-left: 4px solid #2563eb;">
+            <h2 style="color: #2563eb;">📍 ページ管理の場所一覧</h2>
+            <p>各ページがどこで管理されているかを明確にします。</p>
+
+            <table class="widefat" style="margin-top: 15px;">
+                <thead>
+                    <tr>
+                        <th style="padding: 10px;"><strong>ページ名</strong></th>
+                        <th style="padding: 10px;"><strong>管理場所</strong></th>
+                        <th style="padding: 10px;"><strong>編集方法</strong></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 10px;"><strong>TOPページ（ホーム）</strong></td>
+                        <td style="padding: 10px;">固定ページ → 「ホーム」または「トップページ」</td>
+                        <td style="padding: 10px;">
+                            1. 「固定ページ」→「ホーム」を編集<br>
+                            2. ブロックパターンを使って各セクションを配置<br>
+                            3. 「設定」→「表示設定」で「固定ページ」を選択し、ホームページに指定
+                        </td>
+                    </tr>
+                    <tr style="background: #f9fafb;">
+                        <td style="padding: 10px;">スタジオ紹介ページ</td>
+                        <td style="padding: 10px;">固定ページ → 各ページ名</td>
+                        <td style="padding: 10px;">「固定ページ」→「新規追加」で作成</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px;">料金システムページ</td>
+                        <td style="padding: 10px;">固定ページ → 「料金システム」</td>
+                        <td style="padding: 10px;">「料金表」パターンを使用</td>
+                    </tr>
+                    <tr style="background: #f9fafb;">
+                        <td style="padding: 10px;">アクセスページ</td>
+                        <td style="padding: 10px;">固定ページ → 「アクセス」</td>
+                        <td style="padding: 10px;">「アクセス情報」パターンを使用</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px;">お知らせ（ブログ記事）</td>
+                        <td style="padding: 10px;">投稿 → 記事一覧</td>
+                        <td style="padding: 10px;">「投稿」→「新規追加」で作成</td>
+                    </tr>
+                    <tr style="background: #f9fafb;">
+                        <td style="padding: 10px;">スタジオルーム詳細</td>
+                        <td style="padding: 10px;">スタジオルーム → 各ルーム名</td>
+                        <td style="padding: 10px;">「スタジオルーム」→「新規追加」で作成</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px;">電話番号・住所などの基本情報</td>
+                        <td style="padding: 10px;">スタジオ設定 → 基本設定</td>
+                        <td style="padding: 10px;">管理画面左メニュー「スタジオ設定」から編集</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="margin-top: 20px; padding: 15px; background: white; border-radius: 4px;">
+                <h3 style="margin-top: 0;">💡 TOPページの各セクション管理</h3>
+                <p><strong>TOPページの各セクション（ヒーロー、特徴、料金表など）は、すべて「固定ページ」→「ホーム」の中で管理されています。</strong></p>
+                <ol>
+                    <li>管理画面左メニュー「固定ページ」をクリック</li>
+                    <li>「ホーム」または「トップページ」というタイトルのページを見つける</li>
+                    <li>「編集」をクリック</li>
+                    <li>ブロックエディターが開き、各セクションが表示されます</li>
+                    <li>編集したいセクション（ブロック）をクリックして編集</li>
+                    <li>「更新」ボタンで保存</li>
+                </ol>
+                <p style="margin-bottom: 0;"><em>※ TOPページがまだ作成されていない場合は、下記「TOPページの作り方」を参照してください。</em></p>
+            </div>
+        </div>
+
+        <div class="card" style="max-width: 100%; margin-top: 20px;">
             <h2>🎨 ブロックパターンの使い方</h2>
             <p>ブロックパターンを使えば、プロフェッショナルなデザインのセクションを簡単に追加できます。</p>
-            
+
             <ol>
                 <li><strong>ページ編集画面を開く</strong><br>「固定ページ」→「新規追加」または既存ページの編集</li>
                 <li><strong>ブロックパターンを挿入</strong><br>画面左上の「+」ボタン→「パターン」タブ→「カシスタジオ」カテゴリーを選択</li>
                 <li><strong>利用可能なパターン:</strong>
                     <ul>
                         <li>✨ ヒーローセクション - トップページのメインビジュアル</li>
-                        <li>🏢 スタジオルームカード - スタジオの紹介カード</li>
+                        <li>🏢 スタジオルームカード - スタジオの紹介カード（3列）</li>
                         <li>💰 料金表 - 料金プランの表示</li>
                         <li>❓ FAQ（よくある質問） - アコーディオン形式のFAQ</li>
                         <li>📣 CTA（予約促進）セクション - 予約を促すエリア</li>
@@ -887,11 +957,89 @@ function kashis_studio_help_page() {
             </ul>
         </div>
 
+        <div class="card" style="max-width: 100%; margin-top: 20px; background: #fffbeb; border-left: 4px solid #f59e0b;">
+            <h2 style="color: #f59e0b;">✏️ TOPページの編集方法（2つの方法）</h2>
+            <p>TOPページを編集する方法は2つあります。どちらでも同じ結果になりますので、お好みの方法をお選びください。</p>
+
+            <h3 style="margin-top: 1.5rem;">方法1: サイトエディターから編集（推奨）</h3>
+            <ol>
+                <li>管理画面左メニュー「<strong>外観</strong>」→「<strong>エディター</strong>」をクリック</li>
+                <li>「<strong>テンプレート</strong>」をクリック</li>
+                <li>一覧から「<strong>フロントページ</strong>」または「<strong>ホーム</strong>」を選択</li>
+                <li>ブロックエディターが開くので、各セクションを編集</li>
+                <li>画面右上の「<strong>保存</strong>」ボタンをクリック</li>
+            </ol>
+            <p style="margin-top: 1rem; padding: 10px; background: white; border-radius: 4px;">
+                <strong>💡 サイトエディターの利点:</strong><br>
+                ヘッダー、フッター、TOPページのコンテンツをまとめて確認しながら編集できます。<br>
+                リアルタイムでプレビューを見ながら編集できます。
+            </p>
+
+            <h3 style="margin-top: 2rem;">方法2: 固定ページ「ホーム」から編集</h3>
+            <ol>
+                <li>管理画面左メニュー「<strong>固定ページ</strong>」をクリック</li>
+                <li>一覧から「<strong>ホーム</strong>」または「<strong>トップページ</strong>」を見つけて「編集」をクリック</li>
+                <li>ブロックエディターが開くので、各セクションを編集</li>
+                <li>画面右上の「<strong>更新</strong>」ボタンをクリック</li>
+            </ol>
+            <p style="margin-top: 1rem; padding: 10px; background: white; border-radius: 4px;">
+                <strong>💡 固定ページ編集の利点:</strong><br>
+                他の固定ページと同じ方法で編集できるため、慣れている方におすすめです。
+            </p>
+
+            <h3 style="margin-top: 2rem;">🔍 各セクションの見つけ方</h3>
+            <table class="widefat" style="margin-top: 10px; background: white;">
+                <thead>
+                    <tr>
+                        <th style="padding: 8px;">セクション名</th>
+                        <th style="padding: 8px;">見つけ方</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 8px;">ヒーローセクション</td>
+                        <td style="padding: 8px;">ページ最上部の大きなビジュアルエリア（カバーブロック）</td>
+                    </tr>
+                    <tr style="background: #f9fafb;">
+                        <td style="padding: 8px;">スタジオの特徴</td>
+                        <td style="padding: 8px;">3つのカード（絵文字付き）が並んでいるセクション</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px;">スタジオ紹介</td>
+                        <td style="padding: 8px;">スタジオルームの情報が表示されるセクション</td>
+                    </tr>
+                    <tr style="background: #f9fafb;">
+                        <td style="padding: 8px;">料金表</td>
+                        <td style="padding: 8px;">テーブルブロックで料金が表示されているセクション</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px;">FAQ</td>
+                        <td style="padding: 8px;">詳細ブロック（アコーディオン）で質問が並んでいるセクション</td>
+                    </tr>
+                    <tr style="background: #f9fafb;">
+                        <td style="padding: 8px;">予約促進（CTA）</td>
+                        <td style="padding: 8px;">背景色が付いた「今すぐ予約」ボタンがあるセクション</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px;">アクセス情報</td>
+                        <td style="padding: 8px;">住所・地図が表示されているセクション（ページ下部）</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p style="margin-top: 1.5rem; padding: 15px; background: white; border-radius: 4px; border: 2px solid #f59e0b;">
+                <strong>⚠️ 重要:</strong><br>
+                各セクションをクリックすると、ブロックが選択され、右側のサイドバーに編集オプションが表示されます。<br>
+                テキストをクリックすればその場で編集でき、画像をクリックすれば画像を置き換えることができます。
+            </p>
+        </div>
+
         <div class="card" style="max-width: 100%; margin-top: 20px;">
-            <h2>🚀 トップページの作り方（例）</h2>
+            <h2>🚀 新しくTOPページを作成する方法</h2>
+            <p>まだTOPページが作成されていない場合は、以下の手順で作成してください。</p>
             <ol>
                 <li>「固定ページ」→「新規追加」</li>
-                <li>タイトルを「トップページ」に設定</li>
+                <li>タイトルを「ホーム」または「トップページ」に設定</li>
                 <li>以下の順番でパターンを挿入:
                     <ol>
                         <li>ヒーローセクション</li>
