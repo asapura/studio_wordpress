@@ -1,0 +1,39 @@
+name: Deploy to InfinityFree
+
+on:
+  push:
+    branches:
+      - main
+      - claude/modify-wordpress-snow-file-011CV1HwHCs3gEsfys7JMgKt
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy WordPress Theme
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy WordPress Theme via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./wp-content/themes/kashis-studio/
+          server-dir: /htdocs/wp-content/themes/kashis-studio/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.DS_Store
+            **/Thumbs.db
+            **/*.log
+          dangerous-salt-fly: true
+
+      - name: Deploy notification
+        run: |
+          echo "✅ Deployment completed successfully!"
+          echo "🌐 Check your site at your InfinityFree URL"

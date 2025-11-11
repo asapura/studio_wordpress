@@ -1,0 +1,71 @@
+# WordPress Configuration
+wp-config.php
+wp-config-local.php
+
+# WordPress Core Files
+/wordpress/
+/wp-admin/
+/wp-includes/
+
+# WordPress Uploads
+/wp-content/uploads/
+/wp-content/upgrade/
+/wp-content/backup-db/
+/wp-content/cache/
+/wp-content/backups/
+
+# WordPress Plugins (exclude custom plugins if needed)
+# Uncomment to ignore all plugins
+# /wp-content/plugins/
+
+# WordPress Themes (exclude custom themes)
+# Keeping kashis-studio theme tracked
+/wp-content/themes/twenty*/
+
+# WordPress Cache and Temporary Files
+*.log
+*.sql
+*.sqlite
+/sitemap.xml
+/sitemap.xml.gz
+
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*~
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# Node Modules (if using npm)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Environment Files
+.env
+.env.local
+.env.*.local
+
+# Composer
+/vendor/
+
+# Build Files
+/dist/
+/build/
+
+# Temporary Files
+*.tmp
+*.temp
+*.bak
+*.old
