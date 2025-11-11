@@ -769,3 +769,192 @@ function kashis_studio_create_dummy_data() {
     // ダミーデータ作成完了フラグを設定
     update_option('kashis_studio_dummy_data_created', true);
 }
+
+// ============================================================================
+// ブロックエディター対応（非エンジニア向け）
+// ============================================================================
+
+// カスタムブロックパターンカテゴリーの登録
+function kashis_studio_register_block_pattern_category() {
+    if (function_exists('register_block_pattern_category')) {
+        register_block_pattern_category(
+            'kashis-studio',
+            array('label' => __('カシスタジオ', 'kashis-studio'))
+        );
+    }
+}
+add_action('init', 'kashis_studio_register_block_pattern_category');
+
+// エディターのカスタマイズ
+function kashis_studio_editor_settings() {
+    // ブロックエディターのサポートを追加
+    add_theme_support('editor-styles');
+    add_theme_support('wp-block-styles');
+    add_theme_support('responsive-embeds');
+    add_theme_support('align-wide');
+    add_theme_support('custom-spacing');
+    add_theme_support('custom-line-height');
+    add_theme_support('custom-units');
+    add_theme_support('link-color');
+    add_theme_support('border');
+    
+    // エディター用スタイルの読み込み
+    add_editor_style('style.css');
+}
+add_action('after_setup_theme', 'kashis_studio_editor_settings');
+
+// ブロックエディターでのカラーパレット拡張
+function kashis_studio_block_editor_assets() {
+    wp_enqueue_script(
+        'kashis-studio-editor',
+        get_stylesheet_directory_uri() . '/assets/js/editor.js',
+        array('wp-blocks', 'wp-dom-ready', 'wp-edit-post'),
+        wp_get_theme()->get('Version')
+    );
+}
+// add_action('enqueue_block_editor_assets', 'kashis_studio_block_editor_assets');
+
+// 管理画面に使い方ガイドを追加
+function kashis_studio_add_help_menu() {
+    add_submenu_page(
+        'kashis-studio-settings',
+        'ブロックエディターの使い方',
+        'エディターの使い方',
+        'edit_posts',
+        'kashis-studio-help',
+        'kashis_studio_help_page'
+    );
+}
+add_action('admin_menu', 'kashis_studio_add_help_menu', 11);
+
+function kashis_studio_help_page() {
+    ?>
+    <div class="wrap">
+        <h1>ブロックエディターの使い方</h1>
+        
+        <div class="card" style="max-width: 100%;">
+            <h2>🎨 ブロックパターンの使い方</h2>
+            <p>ブロックパターンを使えば、プロフェッショナルなデザインのセクションを簡単に追加できます。</p>
+            
+            <ol>
+                <li><strong>ページ編集画面を開く</strong><br>「固定ページ」→「新規追加」または既存ページの編集</li>
+                <li><strong>ブロックパターンを挿入</strong><br>画面左上の「+」ボタン→「パターン」タブ→「カシスタジオ」カテゴリーを選択</li>
+                <li><strong>利用可能なパターン:</strong>
+                    <ul>
+                        <li>✨ ヒーローセクション - トップページのメインビジュアル</li>
+                        <li>🏢 スタジオルームカード - スタジオの紹介カード</li>
+                        <li>💰 料金表 - 料金プランの表示</li>
+                        <li>❓ FAQ（よくある質問） - アコーディオン形式のFAQ</li>
+                        <li>📣 CTA（予約促進）セクション - 予約を促すエリア</li>
+                        <li>📍 アクセス情報 - 地図と店舗情報</li>
+                        <li>⭐ スタジオの特徴 - 6つの特徴をグリッド表示</li>
+                    </ul>
+                </li>
+                <li><strong>テキストや画像を変更</strong><br>パターンを挿入後、テキストをクリックして編集、画像をクリックして置き換え</li>
+            </ol>
+        </div>
+
+        <div class="card" style="max-width: 100%; margin-top: 20px;">
+            <h2>🎨 色とフォントの変更方法</h2>
+            <p>ブロックエディターの右サイドバーから、色やフォントを簡単に変更できます。</p>
+            
+            <ol>
+                <li><strong>ブロックを選択</strong><br>変更したいテキストや画像をクリック</li>
+                <li><strong>右サイドバーで設定</strong>
+                    <ul>
+                        <li><strong>色</strong>: カラーパレットから選択（プライマリ、セカンダリなど）</li>
+                        <li><strong>フォントサイズ</strong>: 小、中、大、特大など</li>
+                        <li><strong>スペーシング</strong>: 余白を調整</li>
+                        <li><strong>角丸</strong>: ボタンやカードの角を丸くする</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <div class="card" style="max-width: 100%; margin-top: 20px;">
+            <h2>📝 よく使うブロック</h2>
+            <ul>
+                <li><strong>段落</strong>: 通常のテキスト</li>
+                <li><strong>見出し</strong>: タイトルや小見出し（H2〜H6）</li>
+                <li><strong>画像</strong>: 写真やイラストを挿入</li>
+                <li><strong>カラム</strong>: 2列、3列のレイアウト</li>
+                <li><strong>ボタン</strong>: リンクボタン</li>
+                <li><strong>カバー</strong>: 背景画像付きのエリア</li>
+                <li><strong>グループ</strong>: 複数のブロックをまとめる</li>
+                <li><strong>スペーサー</strong>: 余白を追加</li>
+                <li><strong>詳細</strong>: アコーディオン（開閉式）</li>
+                <li><strong>テーブル</strong>: 表を作成</li>
+            </ul>
+        </div>
+
+        <div class="card" style="max-width: 100%; margin-top: 20px;">
+            <h2>🚀 トップページの作り方（例）</h2>
+            <ol>
+                <li>「固定ページ」→「新規追加」</li>
+                <li>タイトルを「トップページ」に設定</li>
+                <li>以下の順番でパターンを挿入:
+                    <ol>
+                        <li>ヒーローセクション</li>
+                        <li>スタジオの特徴</li>
+                        <li>スタジオルームカード</li>
+                        <li>料金表</li>
+                        <li>FAQ</li>
+                        <li>CTA（予約促進）</li>
+                        <li>アクセス情報</li>
+                    </ol>
+                </li>
+                <li>各パターンのテキストと画像を編集</li>
+                <li>「公開」ボタンをクリック</li>
+                <li>「設定」→「表示設定」→「ホームページの表示」で、作成したページを「ホームページ」に設定</li>
+            </ol>
+        </div>
+
+        <div class="card" style="max-width: 100%; margin-top: 20px;">
+            <h2>💡 Tips</h2>
+            <ul>
+                <li><strong>プレビュー機能</strong>: 編集中に「プレビュー」ボタンで表示を確認できます</li>
+                <li><strong>リビジョン</strong>: 過去のバージョンに戻すことができます（右サイドバー→「リビジョン」）</li>
+                <li><strong>下書き保存</strong>: 公開前に「下書きとして保存」で一時保存できます</li>
+                <li><strong>複製</strong>: ブロックを選択→ツールバーの「︙」→「複製」で同じブロックをコピーできます</li>
+                <li><strong>ブロックを移動</strong>: ブロックを選択→ツールバーの「↑↓」で上下に移動できます</li>
+            </ul>
+        </div>
+
+        <div class="card" style="max-width: 100%; margin-top: 20px; background: #f0f9ff; border-left: 4px solid #2563eb;">
+            <h2 style="color: #2563eb;">📚 さらに詳しく学びたい方へ</h2>
+            <p>WordPressの公式ドキュメントもご参照ください：</p>
+            <ul>
+                <li><a href="https://ja.wordpress.org/support/article/wordpress-editor/" target="_blank">WordPressエディター完全ガイド</a></li>
+                <li><a href="https://ja.wordpress.org/support/article/blocks/" target="_blank">ブロック一覧</a></li>
+            </ul>
+        </div>
+    </div>
+    <?php
+}
+
+// 非エンジニア向け: 不要な機能を非表示にする（オプション）
+function kashis_studio_simplify_admin() {
+    // コメント機能を無効化（必要に応じて）
+    // add_action('admin_init', function() {
+    //     remove_menu_page('edit-comments.php');
+    // });
+    
+    // 不要なウィジェットを非表示（必要に応じて）
+    // add_action('admin_init', function() {
+    //     remove_meta_box('dashboard_quick_press', 'dashboard', 'side');
+    //     remove_meta_box('dashboard_primary', 'dashboard', 'side');
+    // });
+}
+add_action('init', 'kashis_studio_simplify_admin');
+
+// ブロックエディターのヒント機能（管理バーに表示）
+function kashis_studio_admin_bar_help($wp_admin_bar) {
+    if (!is_admin() && is_user_logged_in() && current_user_can('edit_posts')) {
+        $wp_admin_bar->add_node(array(
+            'id'    => 'kashis-studio-help',
+            'title' => '📖 エディターの使い方',
+            'href'  => admin_url('admin.php?page=kashis-studio-help'),
+        ));
+    }
+}
+add_action('admin_bar_menu', 'kashis_studio_admin_bar_help', 100);
