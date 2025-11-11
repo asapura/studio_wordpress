@@ -2,6 +2,8 @@
 
 カシスタジオ（レンタルスタジオ）専用のWordPressテーマです。Twenty Twenty-Fourをベースに、ブロックエディター完全対応で構築されています。
 
+**Version:** 1.0.1 | **CI/CD:** GitHub Actions + InfinityFree
+
 ## 📋 目次
 
 - [概要](#概要)
