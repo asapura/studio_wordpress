@@ -6,7 +6,7 @@
  * @since 1.0.0
  */
 
-// 親テーマのスタイルシートを読み込む
+// 親テーマのスタイルシート並びにJavaScriptを読み込む
 function kashis_studio_enqueue_styles() {
     // 親テーマのスタイル
     wp_enqueue_style(
@@ -22,6 +22,15 @@ function kashis_studio_enqueue_styles() {
         get_stylesheet_uri(),
         array('twentytwentyfour-style'),
         wp_get_theme()->get('Version')
+    );
+
+    // カスタムJavaScript
+    wp_enqueue_script(
+        'kashis-studio-theme-js',
+        get_stylesheet_directory_uri() . '/assets/js/theme.js',
+        array(),
+        wp_get_theme()->get('Version'),
+        true // フッターで読み込む
     );
 }
 add_action('wp_enqueue_scripts', 'kashis_studio_enqueue_styles');
