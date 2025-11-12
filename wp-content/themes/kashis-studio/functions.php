@@ -38,6 +38,9 @@ require_once get_stylesheet_directory() . '/includes/widgets.php';
 // Advanced Custom Fields設定
 require_once get_stylesheet_directory() . '/includes/acf.php';
 
+// ヘルパー関数
+require_once get_stylesheet_directory() . '/includes/helpers.php';
+
 // ショートコード
 require_once get_stylesheet_directory() . '/includes/shortcodes.php';
 
