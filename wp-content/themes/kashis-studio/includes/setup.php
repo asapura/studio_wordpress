@@ -40,9 +40,14 @@ function kashis_studio_enqueue_styles() {
     );
 
     // カスタムJavaScript
+    // 開発環境（SCRIPT_DEBUGまたはWP_DEBUG有効時）では通常版、本番では最小化版を使用
+    $script_file = (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) || (defined('WP_DEBUG') && WP_DEBUG)
+        ? 'theme.js'
+        : 'theme.min.js';
+
     wp_enqueue_script(
         'kashis-studio-theme-js',
-        get_stylesheet_directory_uri() . '/assets/js/theme.js',
+        get_stylesheet_directory_uri() . '/assets/js/' . $script_file,
         array(),
         $child_version,
         true // フッターで読み込む
