@@ -5,6 +5,10 @@
  * Categories: kashis-studio
  * Description: スタジオへのアクセス方法と地図
  */
+
+if (!defined('ABSPATH')) {
+    exit;
+}
 ?>
 <!-- wp:group {"align":"full","backgroundColor":"neutral-10","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull has-neutral-10-background-color has-background">

@@ -5,6 +5,10 @@
  * Categories: kashis-studio
  * Description: よくある質問のアコーディオン表示
  */
+
+if (!defined('ABSPATH')) {
+    exit;
+}
 ?>
 <!-- wp:group {"align":"full","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull">

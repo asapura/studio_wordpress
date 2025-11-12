@@ -617,7 +617,7 @@ blockquote {
 
 .lightbox-close {
   position: absolute;
-  top: -40px;
+  top: calc(var(--atlassian-space-40) * -1); /* -40px */
   right: 0;
   background: transparent;
   border: none;

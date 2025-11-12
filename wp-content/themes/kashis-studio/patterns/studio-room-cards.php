@@ -5,6 +5,10 @@
  * Categories: kashis-studio
  * Description: スタジオルームを紹介するカードグリッド
  */
+
+if (!defined('ABSPATH')) {
+    exit;
+}
 ?>
 <!-- wp:group {"align":"full","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull">

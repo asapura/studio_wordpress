@@ -5,6 +5,10 @@
  * Categories: kashis-studio
  * Description: トップページのメインビジュアルセクション
  */
+
+if (!defined('ABSPATH')) {
+    exit; // Exit if accessed directly
+}
 ?>
 <!-- wp:cover {"url":"","dimRatio":40,"overlayColor":"blue-500","minHeight":400,"align":"full"} -->
 <div class="wp-block-cover alignfull" style="min-height:400px"><span aria-hidden="true" class="wp-block-cover__background has-blue-500-background-color has-background-dim-40 has-background-dim"></span><div class="wp-block-cover__inner-container">

@@ -5,6 +5,10 @@
  * Categories: kashis-studio
  * Description: 予約を促すCTAセクション
  */
+
+if (!defined('ABSPATH')) {
+    exit;
+}
 ?>
 <!-- wp:cover {"overlayColor":"blue-500","isUserOverlayColor":true,"minHeight":350,"align":"full"} -->
 <div class="wp-block-cover alignfull" style="min-height:350px"><span aria-hidden="true" class="wp-block-cover__background has-blue-500-background-color has-background-dim-100 has-background-dim"></span><div class="wp-block-cover__inner-container">
