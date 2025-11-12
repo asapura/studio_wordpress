@@ -201,6 +201,9 @@
         // ライトボックスを作成
         const lightbox = document.createElement('div');
         lightbox.className = 'lightbox';
+        lightbox.setAttribute('role', 'dialog');
+        lightbox.setAttribute('aria-modal', 'true');
+        lightbox.setAttribute('aria-label', image.alt || 'ギャラリー画像');
         lightbox.innerHTML = `
           <div class="lightbox-overlay"></div>
           <div class="lightbox-content">
@@ -263,6 +266,10 @@
             errorMsg.remove();
           }
 
+          // ARIA属性をリセット
+          input.removeAttribute('aria-invalid');
+          input.removeAttribute('aria-describedby');
+
           // バリデーション
           if (!input.value.trim()) {
             isValid = false;
@@ -284,12 +291,20 @@
     const formGroup = input.closest('.form-group');
     if (!formGroup) return;
 
+    const errorId = `error-${input.id || Math.random().toString(36).substr(2, 9)}`;
     const error = document.createElement('p');
     error.className = 'form-error';
+    error.id = errorId;
+    error.setAttribute('role', 'alert');
+    error.setAttribute('aria-live', 'polite');
     error.style.cssText = `color: var(--atlassian-red-500); font-size: ${CONFIG.ERROR_FONT_SIZE}; margin-top: ${CONFIG.ERROR_MARGIN_TOP};`;
     error.textContent = message;
 
     formGroup.appendChild(error);
+
+    // 入力欄にaria-invalidとaria-describedbyを設定
+    input.setAttribute('aria-invalid', 'true');
+    input.setAttribute('aria-describedby', errorId);
     input.focus();
   }
 
@@ -352,21 +367,52 @@
       const tabs = group.querySelectorAll('[data-tab]');
       const panels = group.querySelectorAll('[data-tab-panel]');
 
-      tabs.forEach(tab => {
-        tab.addEventListener('click', function() {
-          const targetId = this.getAttribute('data-tab');
+      // タブリストにrole属性を追加
+      group.setAttribute('role', 'tablist');
 
+      tabs.forEach((tab, index) => {
+        const targetId = tab.getAttribute('data-tab');
+
+        // タブにARIA属性を追加
+        tab.setAttribute('role', 'tab');
+        tab.setAttribute('aria-controls', `panel-${targetId}`);
+        tab.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
+        tab.setAttribute('tabindex', index === 0 ? '0' : '-1');
+
+        tab.addEventListener('click', function() {
           // すべてのタブとパネルを非アクティブに
-          tabs.forEach(t => t.classList.remove('active'));
-          panels.forEach(p => p.classList.remove('active'));
+          tabs.forEach(t => {
+            t.classList.remove('active');
+            t.setAttribute('aria-selected', 'false');
+            t.setAttribute('tabindex', '-1');
+          });
+          panels.forEach(p => {
+            p.classList.remove('active');
+            p.setAttribute('hidden', '');
+          });
 
           // クリックされたタブとパネルをアクティブに
           this.classList.add('active');
+          this.setAttribute('aria-selected', 'true');
+          this.setAttribute('tabindex', '0');
+
           const targetPanel = group.querySelector(`[data-tab-panel="${targetId}"]`);
           if (targetPanel) {
             targetPanel.classList.add('active');
+            targetPanel.removeAttribute('hidden');
           }
         });
+      });
+
+      // パネルにARIA属性を追加
+      panels.forEach((panel, index) => {
+        const panelId = panel.getAttribute('data-tab-panel');
+        panel.setAttribute('role', 'tabpanel');
+        panel.setAttribute('id', `panel-${panelId}`);
+        panel.setAttribute('aria-labelledby', panelId);
+        if (index !== 0) {
+          panel.setAttribute('hidden', '');
+        }
       });
     });
   }
