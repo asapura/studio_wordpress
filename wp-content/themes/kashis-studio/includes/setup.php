@@ -12,18 +12,23 @@
  * Loads the parent theme (Twenty Twenty-Four) stylesheet, child theme stylesheet,
  * and custom JavaScript file with proper versioning and dependencies.
  *
+ * Script Loading Strategy:
+ * - Development mode (SCRIPT_DEBUG or WP_DEBUG): Loads unminified theme.js for debugging
+ * - Production mode: Loads minified theme.min.js for optimal performance
+ *
  * @since 1.0.6
+ * @since 1.0.8 Added automatic minified/unminified script selection
  * @return void
  */
-function kashis_studio_enqueue_styles() {
+function kashis_studio_enqueue_styles(): void {
     $theme = wp_get_theme();
     $parent_theme = $theme->parent();
 
-    // 親テーマのバージョン（存在チェック）
+    // 親テーマのバージョン取得（存在しない場合はフォールバック）
     $parent_version = $parent_theme ? $parent_theme->get('Version') : '1.0.0';
     $child_version = $theme->get('Version');
 
-    // 親テーマのスタイル
+    // 親テーマのスタイル読み込み
     wp_enqueue_style(
         'twentytwentyfour-style',
         get_template_directory_uri() . '/style.css',
@@ -31,7 +36,7 @@ function kashis_studio_enqueue_styles() {
         $parent_version
     );
 
-    // 子テーマのスタイル
+    // 子テーマのスタイル読み込み（親テーマスタイルに依存）
     wp_enqueue_style(
         'kashis-studio-style',
         get_stylesheet_uri(),
@@ -39,18 +44,18 @@ function kashis_studio_enqueue_styles() {
         $child_version
     );
 
-    // カスタムJavaScript
-    // 開発環境（SCRIPT_DEBUGまたはWP_DEBUG有効時）では通常版、本番では最小化版を使用
+    // カスタムJavaScript読み込み
+    // 開発環境では通常版（可読性重視）、本番環境では最小化版（パフォーマンス重視）を自動選択
     $script_file = (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) || (defined('WP_DEBUG') && WP_DEBUG)
-        ? 'theme.js'
-        : 'theme.min.js';
+        ? 'theme.js'        // 開発用：19KB（デバッグしやすい）
+        : 'theme.min.js';   // 本番用：7.4KB（61%削減）
 
     wp_enqueue_script(
         'kashis-studio-theme-js',
         get_stylesheet_directory_uri() . '/assets/js/' . $script_file,
         array(),
         $child_version,
-        true // フッターで読み込む
+        true // フッターで読み込み（ページレンダリングブロック防止）
     );
 }
 add_action('wp_enqueue_scripts', 'kashis_studio_enqueue_styles');
@@ -61,42 +66,52 @@ add_action('wp_enqueue_scripts', 'kashis_studio_enqueue_styles');
  * Registers theme support for title-tag, post-thumbnails, HTML5 markup,
  * custom logo, navigation menus, and custom image sizes.
  *
+ * Features Enabled:
+ * - Title Tag: Automatic <title> tag generation for SEO
+ * - Post Thumbnails: Featured image support for posts and pages
+ * - HTML5: Modern semantic markup for forms, galleries, etc.
+ * - Custom Logo: Customizer support for site logo
+ * - Navigation Menus: Primary and footer menu locations
+ * - Custom Image Sizes: Optimized sizes for studio thumbnails
+ *
  * @since 1.0.6
+ * @since 1.0.8 Enhanced documentation
  * @return void
  */
-function kashis_studio_setup() {
-    // タイトルタグのサポート
+function kashis_studio_setup(): void {
+    // タイトルタグのサポート（SEO最適化のため自動生成）
     add_theme_support('title-tag');
 
-    // アイキャッチ画像のサポート
+    // アイキャッチ画像のサポート（投稿・固定ページで使用可能）
     add_theme_support('post-thumbnails');
 
-    // HTML5サポート
+    // HTML5サポート（モダンなセマンティックマークアップ）
     add_theme_support('html5', array(
-        'search-form',
-        'comment-form',
-        'comment-list',
-        'gallery',
-        'caption',
-        'style',
-        'script'
+        'search-form',   // 検索フォーム
+        'comment-form',  // コメントフォーム
+        'comment-list',  // コメントリスト
+        'gallery',       // ギャラリー
+        'caption',       // キャプション
+        'style',         // スタイルタグ
+        'script'         // スクリプトタグ
     ));
 
-    // カスタムロゴのサポート
+    // カスタムロゴのサポート（カスタマイザーで設定可能）
     add_theme_support('custom-logo', array(
         'height'      => 100,
         'width'       => 400,
-        'flex-height' => true,
-        'flex-width'  => true,
+        'flex-height' => true,  // 高さ可変
+        'flex-width'  => true,  // 幅可変
     ));
 
-    // ナビゲーションメニューの登録
+    // ナビゲーションメニューの登録（プライマリとフッター）
     register_nav_menus(array(
-        'primary' => __('プライマリメニュー', 'kashis-studio'),
-        'footer'  => __('フッターメニュー', 'kashis-studio'),
+        'primary' => __('プライマリメニュー', 'kashis-studio'),  // ヘッダーメニュー
+        'footer'  => __('フッターメニュー', 'kashis-studio'),    // フッターメニュー
     ));
 
-    // カスタム画像サイズ
+    // カスタム画像サイズ（スタジオサムネイル用に最適化）
+    // 800x600px、トリミング有効
     add_image_size('studio-thumbnail', 800, 600, true);
     add_image_size('studio-hero', 1920, 800, true);
 }

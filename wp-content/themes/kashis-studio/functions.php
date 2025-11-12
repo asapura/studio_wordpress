@@ -13,8 +13,11 @@ if (!defined('ABSPATH')) {
 
 /**
  * Theme Version
+ *
+ * @since 1.0.6
+ * @since 1.0.8 Complete refactoring - Security, Performance, Accessibility, Code Quality
  */
-define('KASHIS_STUDIO_VERSION', '1.0.7');
+define('KASHIS_STUDIO_VERSION', '1.0.8');
 
 /**
  * Default Studio Information Constants
