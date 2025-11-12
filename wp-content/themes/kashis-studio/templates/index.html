@@ -2,28 +2,83 @@
 
 <!-- wp:group {"tagName":"main","align":"full","layout":{"type":"constrained"}} -->
 <main class="wp-block-group alignfull">
-    <!-- wp:query-title {"type":"archive"} /-->
+    <!-- wp:spacer {"height":"48px"} -->
+    <div style="height:48px" aria-hidden="true" class="wp-block-spacer"></div>
+    <!-- /wp:spacer -->
+
+    <!-- wp:query-title {"type":"archive","textAlign":"center","fontSize":"35"} /-->
+
+    <!-- wp:spacer {"height":"16px"} -->
+    <div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>
+    <!-- /wp:spacer -->
+
+    <!-- wp:paragraph {"align":"center","textColor":"neutral-500","fontSize":"14"} -->
+    <p class="has-text-align-center has-neutral-500-color has-text-color has-14-font-size">カシスタジオからのお知らせ・最新情報</p>
+    <!-- /wp:paragraph -->
+
+    <!-- wp:spacer {"height":"48px"} -->
+    <div style="height:48px" aria-hidden="true" class="wp-block-spacer"></div>
+    <!-- /wp:spacer -->
+
     <!-- wp:query {"queryId":0,"query":{"perPage":10,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true}} -->
     <div class="wp-block-query">
-        <!-- wp:post-template -->
-            <!-- wp:post-title {"isLink":true} /-->
-            <!-- wp:post-date /-->
-            <!-- wp:post-excerpt /-->
+        <!-- wp:post-template {"style":{"spacing":{"blockGap":"32px"}}} -->
+            <!-- wp:group {"backgroundColor":"neutral-0","style":{"border":{"radius":"3px"},"spacing":{"padding":{"top":"24px","bottom":"24px","left":"24px","right":"24px"}}},"layout":{"type":"constrained"}} -->
+            <div class="wp-block-group has-neutral-0-background-color has-background" style="border-radius:3px;padding-top:24px;padding-bottom:24px;padding-left:24px;padding-right:24px">
+                <!-- wp:post-title {"isLink":true,"fontSize":"24","textColor":"blue-500"} /-->
+
+                <!-- wp:spacer {"height":"8px"} -->
+                <div style="height:8px" aria-hidden="true" class="wp-block-spacer"></div>
+                <!-- /wp:spacer -->
+
+                <!-- wp:post-date {"textColor":"neutral-300","fontSize":"12"} /-->
+
+                <!-- wp:spacer {"height":"16px"} -->
+                <div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>
+                <!-- /wp:spacer -->
+
+                <!-- wp:post-excerpt {"textColor":"neutral-500","fontSize":"14"} /-->
+
+                <!-- wp:spacer {"height":"16px"} -->
+                <div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>
+                <!-- /wp:spacer -->
+
+                <!-- wp:read-more {"content":"続きを読む →","style":{"typography":{"fontSize":"14px"}},"textColor":"blue-500"} /-->
+            </div>
+            <!-- /wp:group -->
         <!-- /wp:post-template -->
 
-        <!-- wp:query-pagination -->
-            <!-- wp:query-pagination-previous /-->
-            <!-- wp:query-pagination-numbers /-->
-            <!-- wp:query-pagination-next /-->
+        <!-- wp:spacer {"height":"48px"} -->
+        <div style="height:48px" aria-hidden="true" class="wp-block-spacer"></div>
+        <!-- /wp:spacer -->
+
+        <!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"blockGap":"8px"}}} -->
+            <!-- wp:query-pagination-previous {"fontSize":"14","style":{"border":{"radius":"3px"},"spacing":{"padding":{"top":"8px","bottom":"8px","left":"16px","right":"16px"}}},"backgroundColor":"neutral-10","textColor":"neutral-800"} /-->
+
+            <!-- wp:query-pagination-numbers {"fontSize":"14","style":{"border":{"radius":"3px"},"spacing":{"padding":{"top":"8px","bottom":"8px","left":"16px","right":"16px"}}}} /-->
+
+            <!-- wp:query-pagination-next {"fontSize":"14","style":{"border":{"radius":"3px"},"spacing":{"padding":{"top":"8px","bottom":"8px","left":"16px","right":"16px"}}},"backgroundColor":"neutral-10","textColor":"neutral-800"} /-->
         <!-- /wp:query-pagination -->
 
         <!-- wp:query-no-results -->
-            <!-- wp:paragraph -->
-            <p>投稿が見つかりませんでした。</p>
-            <!-- /wp:paragraph -->
+            <!-- wp:spacer {"height":"48px"} -->
+            <div style="height:48px" aria-hidden="true" class="wp-block-spacer"></div>
+            <!-- /wp:spacer -->
+
+            <!-- wp:group {"backgroundColor":"neutral-10","style":{"border":{"radius":"3px"},"spacing":{"padding":{"top":"48px","bottom":"48px","left":"24px","right":"24px"}}},"layout":{"type":"constrained"}} -->
+            <div class="wp-block-group has-neutral-10-background-color has-background" style="border-radius:3px;padding-top:48px;padding-bottom:48px;padding-left:24px;padding-right:24px">
+                <!-- wp:paragraph {"align":"center","textColor":"neutral-500","fontSize":"16"} -->
+                <p class="has-text-align-center has-neutral-500-color has-text-color has-16-font-size">投稿が見つかりませんでした。</p>
+                <!-- /wp:paragraph -->
+            </div>
+            <!-- /wp:group -->
         <!-- /wp:query-no-results -->
     </div>
     <!-- /wp:query -->
+
+    <!-- wp:spacer {"height":"48px"} -->
+    <div style="height:48px" aria-hidden="true" class="wp-block-spacer"></div>
+    <!-- /wp:spacer -->
 </main>
 <!-- /wp:group -->
 
