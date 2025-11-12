@@ -6,7 +6,18 @@
  * @since 1.0.6
  */
 
-// カスタムショートコード: 予約システム埋め込みエリア
+/**
+ * Shortcode to embed STORES reservation system
+ *
+ * Outputs a reservation system embed area with configurable height.
+ * Displays the reservation code from theme settings with XSS protection.
+ *
+ * Usage: [reservation_embed height="600px"]
+ *
+ * @since 1.0.6
+ * @param array $atts Shortcode attributes (height)
+ * @return string HTML output for reservation embed area
+ */
 function kashis_studio_reservation_embed($atts) {
     $atts = shortcode_atts(array(
         'height' => '600px',
@@ -35,7 +46,18 @@ function kashis_studio_reservation_embed($atts) {
 }
 add_shortcode('reservation_embed', 'kashis_studio_reservation_embed');
 
-// スタジオ情報を取得するヘルパー関数
+/**
+ * Get studio information by key
+ *
+ * Retrieves studio contact information and details from WordPress options.
+ * Returns empty string if key doesn't exist.
+ *
+ * Available keys: phone, email, address, hours, access
+ *
+ * @since 1.0.6
+ * @param string $key The information key to retrieve
+ * @return string The requested studio information or empty string
+ */
 function kashis_get_studio_info($key) {
     $info = array(
         'phone'   => get_option('kashis_studio_phone', '03-1234-5678'),

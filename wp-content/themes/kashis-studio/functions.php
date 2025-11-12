@@ -48,9 +48,13 @@ require_once get_stylesheet_directory() . '/includes/block-patterns.php';
 require_once get_stylesheet_directory() . '/includes/admin.php';
 
 /**
- * Theme Information
+ * Get theme information
  *
- * @return array Theme details
+ * Returns an array containing theme metadata including name, version,
+ * author, and parent theme information.
+ *
+ * @since 1.0.6
+ * @return array Theme details including name, version, author, and parent theme
  */
 function kashis_studio_get_theme_info() {
     return array(
@@ -62,9 +66,13 @@ function kashis_studio_get_theme_info() {
 }
 
 /**
- * Admin Simplification
+ * Simplify admin interface for non-technical users
  *
- * 非エンジニア向けに管理画面をシンプル化
+ * Hides unnecessary menu items (Comments, Tools) from the WordPress admin
+ * panel for non-administrator users to reduce complexity.
+ *
+ * @since 1.0.6
+ * @return void
  */
 function kashis_studio_simplify_admin() {
     // 管理者以外の場合、一部のメニューを非表示
@@ -76,7 +84,14 @@ function kashis_studio_simplify_admin() {
 add_action('init', 'kashis_studio_simplify_admin');
 
 /**
- * Admin Bar Help Link
+ * Add help link to admin bar
+ *
+ * Adds a "📘 編集ガイド" (Edit Guide) link to the WordPress admin bar
+ * for quick access to the theme's help documentation.
+ *
+ * @since 1.0.6
+ * @param WP_Admin_Bar $wp_admin_bar WordPress admin bar object
+ * @return void
  */
 function kashis_studio_admin_bar_help($wp_admin_bar) {
     $wp_admin_bar->add_node(array(

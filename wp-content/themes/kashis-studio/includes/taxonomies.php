@@ -6,7 +6,16 @@
  * @since 1.0.6
  */
 
-// カスタムタクソノミー
+/**
+ * Register custom taxonomies for the theme
+ *
+ * Registers two taxonomies for the studio_room post type:
+ * - studio_usage: Hierarchical taxonomy for usage types (Dance, Yoga, Music, etc.)
+ * - studio_equipment: Non-hierarchical taxonomy for equipment tags (Mirrors, Sound system, etc.)
+ *
+ * @since 1.0.6
+ * @return void
+ */
 function kashis_studio_register_taxonomies() {
     // 利用用途タクソノミー
     register_taxonomy('studio_usage', 'studio_room', array(

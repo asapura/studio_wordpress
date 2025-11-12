@@ -55,43 +55,71 @@ Text Domain: kashis-studio
   --atlassian-yellow-50: #FFFAE6;
   --atlassian-yellow-400: #FFAB00;
 
-  /* Spacing Scale (4px base) */
-  --space-4: 4px;
-  --space-8: 8px;
-  --space-12: 12px;
-  --space-16: 16px;
-  --space-20: 20px;
-  --space-24: 24px;
-  --space-32: 32px;
-  --space-40: 40px;
-  --space-48: 48px;
+  /* Spacing Scale (4px base) - Atlassian Design System */
+  --atlassian-space-4: 4px;
+  --atlassian-space-8: 8px;
+  --atlassian-space-12: 12px;
+  --atlassian-space-16: 16px;
+  --atlassian-space-20: 20px;
+  --atlassian-space-24: 24px;
+  --atlassian-space-32: 32px;
+  --atlassian-space-40: 40px;
+  --atlassian-space-48: 48px;
 
-  /* Border Radius */
-  --border-radius: 3px;
-  --border-radius-large: 6px;
+  /* Border Radius - Atlassian Design System */
+  --atlassian-border-radius: 3px;
+  --atlassian-border-radius-large: 6px;
 
-  /* Typography */
-  --font-size-11: 11px;
-  --font-size-12: 12px;
-  --font-size-14: 14px;
-  --font-size-16: 16px;
-  --font-size-20: 20px;
-  --font-size-24: 24px;
-  --font-size-29: 29px;
-  --font-size-35: 35px;
+  /* Typography - Atlassian Design System */
+  --atlassian-font-size-11: 11px;
+  --atlassian-font-size-12: 12px;
+  --atlassian-font-size-14: 14px;
+  --atlassian-font-size-16: 16px;
+  --atlassian-font-size-20: 20px;
+  --atlassian-font-size-24: 24px;
+  --atlassian-font-size-29: 29px;
+  --atlassian-font-size-35: 35px;
 
-  /* Line Heights */
-  --line-height-base: 1.71428;
-  --line-height-heading: 1.2;
+  /* Line Heights - Atlassian Design System */
+  --atlassian-line-height-base: 1.71428;
+  --atlassian-line-height-heading: 1.2;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 1px rgba(9, 30, 66, 0.25), 0 0 1px rgba(9, 30, 66, 0.31);
-  --shadow-md: 0 4px 8px -2px rgba(9, 30, 66, 0.25), 0 0 1px rgba(9, 30, 66, 0.31);
-  --shadow-lg: 0 8px 16px -4px rgba(9, 30, 66, 0.25), 0 0 1px rgba(9, 30, 66, 0.31);
+  /* Shadows - Atlassian Design System */
+  --atlassian-shadow-sm: 0 1px 1px rgba(9, 30, 66, 0.25), 0 0 1px rgba(9, 30, 66, 0.31);
+  --atlassian-shadow-md: 0 4px 8px -2px rgba(9, 30, 66, 0.25), 0 0 1px rgba(9, 30, 66, 0.31);
+  --atlassian-shadow-lg: 0 8px 16px -4px rgba(9, 30, 66, 0.25), 0 0 1px rgba(9, 30, 66, 0.31);
 
-  /* Transitions */
-  --transition-base: 150ms ease;
-  --transition-slow: 300ms ease;
+  /* Transitions - Atlassian Design System */
+  --atlassian-transition-base: 150ms ease;
+  --atlassian-transition-slow: 300ms ease;
+
+  /* Legacy aliases for backward compatibility */
+  --space-4: var(--atlassian-space-4);
+  --space-8: var(--atlassian-space-8);
+  --space-12: var(--atlassian-space-12);
+  --space-16: var(--atlassian-space-16);
+  --space-20: var(--atlassian-space-20);
+  --space-24: var(--atlassian-space-24);
+  --space-32: var(--atlassian-space-32);
+  --space-40: var(--atlassian-space-40);
+  --space-48: var(--atlassian-space-48);
+  --border-radius: var(--atlassian-border-radius);
+  --border-radius-large: var(--atlassian-border-radius-large);
+  --font-size-11: var(--atlassian-font-size-11);
+  --font-size-12: var(--atlassian-font-size-12);
+  --font-size-14: var(--atlassian-font-size-14);
+  --font-size-16: var(--atlassian-font-size-16);
+  --font-size-20: var(--atlassian-font-size-20);
+  --font-size-24: var(--atlassian-font-size-24);
+  --font-size-29: var(--atlassian-font-size-29);
+  --font-size-35: var(--atlassian-font-size-35);
+  --line-height-base: var(--atlassian-line-height-base);
+  --line-height-heading: var(--atlassian-line-height-heading);
+  --shadow-sm: var(--atlassian-shadow-sm);
+  --shadow-md: var(--atlassian-shadow-md);
+  --shadow-lg: var(--atlassian-shadow-lg);
+  --transition-base: var(--atlassian-transition-base);
+  --transition-slow: var(--atlassian-transition-slow);
 }
 
 /* ==========================================================================

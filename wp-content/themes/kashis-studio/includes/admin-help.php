@@ -6,7 +6,16 @@
  * @since 1.0.7
  */
 
-// 管理画面に使い方ガイドを追加
+/**
+ * Add help/usage guide page to admin menu
+ *
+ * Creates a submenu page under "スタジオ設定" (Studio Settings) that provides
+ * comprehensive documentation for non-technical users on how to use the block
+ * editor and manage website content.
+ *
+ * @since 1.0.7
+ * @return void
+ */
 function kashis_studio_add_help_menu() {
     add_submenu_page(
         'kashis-studio-settings',
@@ -19,6 +28,23 @@ function kashis_studio_add_help_menu() {
 }
 add_action('admin_menu', 'kashis_studio_add_help_menu', 11);
 
+/**
+ * Render the help page content
+ *
+ * Displays a comprehensive guide for using the block editor including:
+ * - Page management locations
+ * - Block pattern usage instructions
+ * - Color and font customization
+ * - Commonly used blocks
+ * - TOP page editing methods
+ * - Tips and best practices
+ * - Links to official WordPress documentation
+ *
+ * Designed for non-technical users to easily understand how to manage the site.
+ *
+ * @since 1.0.7
+ * @return void
+ */
 function kashis_studio_help_page() {
     ?>
     <div class="wrap">

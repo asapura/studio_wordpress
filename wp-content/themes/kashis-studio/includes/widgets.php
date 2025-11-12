@@ -6,7 +6,15 @@
  * @since 1.0.6
  */
 
-// ウィジェットエリアの登録
+/**
+ * Register widget areas (sidebars)
+ *
+ * Registers four widget-ready areas: one sidebar and three footer widget areas
+ * with appropriate HTML markup for widgets and titles.
+ *
+ * @since 1.0.6
+ * @return void
+ */
 function kashis_studio_widgets_init() {
     register_sidebar(array(
         'name'          => 'サイドバー',

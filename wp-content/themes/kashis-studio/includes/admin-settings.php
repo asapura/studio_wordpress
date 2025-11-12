@@ -6,7 +6,15 @@
  * @since 1.0.7
  */
 
-// 管理画面にカスタム設定ページを追加
+/**
+ * Add custom settings page to admin menu
+ *
+ * Creates a top-level menu item "スタジオ設定" (Studio Settings) in the WordPress
+ * admin panel for managing theme-specific settings.
+ *
+ * @since 1.0.7
+ * @return void
+ */
 function kashis_studio_add_admin_menu() {
     add_menu_page(
         'カシスタジオ設定',
@@ -20,7 +28,20 @@ function kashis_studio_add_admin_menu() {
 }
 add_action('admin_menu', 'kashis_studio_add_admin_menu');
 
-// 設定ページの内容
+/**
+ * Render the settings page content
+ *
+ * Displays the settings form for studio information including:
+ * - STORES reservation embed code
+ * - Phone number
+ * - Email address
+ * - Physical address
+ * - Business hours
+ * - Access information
+ *
+ * @since 1.0.7
+ * @return void
+ */
 function kashis_studio_settings_page() {
     ?>
     <div class="wrap">
@@ -75,7 +96,15 @@ function kashis_studio_settings_page() {
     <?php
 }
 
-// 設定の登録
+/**
+ * Register theme settings with WordPress Settings API
+ *
+ * Registers all studio settings options to allow them to be saved
+ * via the WordPress options system.
+ *
+ * @since 1.0.7
+ * @return void
+ */
 function kashis_studio_register_settings() {
     register_setting('kashis_studio_settings', 'kashis_studio_reservation_code');
     register_setting('kashis_studio_settings', 'kashis_studio_phone');

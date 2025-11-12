@@ -6,7 +6,15 @@
  * @since 1.0.7
  */
 
-// ダミーデータ作成ページを追加
+/**
+ * Add dummy data generator page to admin menu
+ *
+ * Creates a submenu page under "スタジオ設定" (Studio Settings) for generating
+ * sample content to populate the site.
+ *
+ * @since 1.0.7
+ * @return void
+ */
 function kashis_studio_add_dummy_data_page() {
     add_submenu_page(
         'kashis-studio-settings',
@@ -19,7 +27,15 @@ function kashis_studio_add_dummy_data_page() {
 }
 add_action('admin_menu', 'kashis_studio_add_dummy_data_page');
 
-// ダミーデータ作成ページの内容
+/**
+ * Render the dummy data generator page
+ *
+ * Displays interface for creating sample content including studio rooms,
+ * pages, and blog posts. Handles form submission with nonce verification.
+ *
+ * @since 1.0.7
+ * @return void
+ */
 function kashis_studio_dummy_data_page() {
     // ダミーデータ作成処理
     if (isset($_POST['create_dummy_data']) && check_admin_referer('kashis_studio_dummy_data_nonce')) {
@@ -68,7 +84,20 @@ function kashis_studio_dummy_data_page() {
     <?php
 }
 
-// ダミーデータ作成関数
+/**
+ * Create dummy data for theme demonstration
+ *
+ * Generates sample content including:
+ * - 1 studio room post with custom fields and taxonomies
+ * - 6 fixed pages (Home, Pricing, Access, How to Use, Contact, Reservation)
+ * - 3 blog posts in the "お知らせ" (News) category
+ * - Category and taxonomy terms
+ *
+ * Sets a flag in options to prevent accidental duplicate creation.
+ *
+ * @since 1.0.7
+ * @return void
+ */
 function kashis_studio_create_dummy_data() {
     // 1. スタジオルームの作成
     $studio_post = array(

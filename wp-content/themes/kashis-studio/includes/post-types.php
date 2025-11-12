@@ -6,7 +6,15 @@
  * @since 1.0.6
  */
 
-// カスタム投稿タイプ: スタジオルーム
+/**
+ * Register custom post types for the theme
+ *
+ * Registers the 'studio_room' custom post type for managing rental studio rooms
+ * with full block editor support, custom fields, and archive functionality.
+ *
+ * @since 1.0.6
+ * @return void
+ */
 function kashis_studio_register_post_types() {
     // スタジオルーム
     register_post_type('studio_room', array(
