@@ -100,17 +100,41 @@ function kashis_studio_settings_page() {
  * Register theme settings with WordPress Settings API
  *
  * Registers all studio settings options to allow them to be saved
- * via the WordPress options system.
+ * via the WordPress options system with proper sanitization callbacks.
  *
  * @since 1.0.7
  * @return void
  */
 function kashis_studio_register_settings() {
-    register_setting('kashis_studio_settings', 'kashis_studio_reservation_code');
-    register_setting('kashis_studio_settings', 'kashis_studio_phone');
-    register_setting('kashis_studio_settings', 'kashis_studio_email');
-    register_setting('kashis_studio_settings', 'kashis_studio_address');
-    register_setting('kashis_studio_settings', 'kashis_studio_hours');
-    register_setting('kashis_studio_settings', 'kashis_studio_access');
+    register_setting('kashis_studio_settings', 'kashis_studio_reservation_code', array(
+        'type' => 'string',
+        'sanitize_callback' => 'wp_kses_post',
+        'default' => ''
+    ));
+    register_setting('kashis_studio_settings', 'kashis_studio_phone', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default' => '03-1234-5678'
+    ));
+    register_setting('kashis_studio_settings', 'kashis_studio_email', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_email',
+        'default' => 'info@kashis-studio.example.com'
+    ));
+    register_setting('kashis_studio_settings', 'kashis_studio_address', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default' => '東京都渋谷区〇〇1-2-3 〇〇ビル4F'
+    ));
+    register_setting('kashis_studio_settings', 'kashis_studio_hours', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default' => '平日 10:00-22:00 / 土日祝 9:00-22:00'
+    ));
+    register_setting('kashis_studio_settings', 'kashis_studio_access', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'default' => 'JR山手線 渋谷駅 徒歩5分'
+    ));
 }
 add_action('admin_init', 'kashis_studio_register_settings');

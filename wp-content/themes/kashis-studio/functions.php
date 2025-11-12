@@ -81,7 +81,7 @@ function kashis_studio_simplify_admin() {
         remove_menu_page('tools.php');         // ツール
     }
 }
-add_action('init', 'kashis_studio_simplify_admin');
+add_action('admin_menu', 'kashis_studio_simplify_admin', 999);
 
 /**
  * Add help link to admin bar

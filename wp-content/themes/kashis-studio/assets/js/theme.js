@@ -139,10 +139,7 @@
         if (href === '#' || href === '#!') return;
 
         const target = document.querySelector(href);
-        if (!target) {
-          console.warn(`[Kashis Studio] Target element not found: ${href}`);
-          return;
-        }
+        if (!target) return;
 
         e.preventDefault();
 
@@ -199,10 +196,7 @@
     galleryItems.forEach(item => {
       item.addEventListener('click', function() {
         const image = this.querySelector('.gallery-image');
-        if (!image) {
-          console.warn('[Kashis Studio] Gallery image not found in clicked item');
-          return;
-        }
+        if (!image) return;
 
         // ライトボックスを作成
         const lightbox = document.createElement('div');
@@ -288,10 +282,7 @@
 
   function showError(input, message) {
     const formGroup = input.closest('.form-group');
-    if (!formGroup) {
-      console.warn('[Kashis Studio] Form group not found for input:', input);
-      return;
-    }
+    if (!formGroup) return;
 
     const error = document.createElement('p');
     error.className = 'form-error';
@@ -334,10 +325,7 @@
   function animateCounter(element) {
     const target = parseInt(element.getAttribute('data-counter'));
 
-    if (isNaN(target)) {
-      console.warn('[Kashis Studio] Invalid counter value:', element.getAttribute('data-counter'));
-      return;
-    }
+    if (isNaN(target)) return;
 
     const stepValue = target / CONFIG.COUNTER_STEPS;
     let current = 0;

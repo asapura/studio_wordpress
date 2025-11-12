@@ -16,12 +16,19 @@
  * @return void
  */
 function kashis_studio_enqueue_styles() {
+    $theme = wp_get_theme();
+    $parent_theme = $theme->parent();
+
+    // 親テーマのバージョン（存在チェック）
+    $parent_version = $parent_theme ? $parent_theme->get('Version') : '1.0.0';
+    $child_version = $theme->get('Version');
+
     // 親テーマのスタイル
     wp_enqueue_style(
         'twentytwentyfour-style',
         get_template_directory_uri() . '/style.css',
         array(),
-        wp_get_theme()->parent()->get('Version')
+        $parent_version
     );
 
     // 子テーマのスタイル
@@ -29,7 +36,7 @@ function kashis_studio_enqueue_styles() {
         'kashis-studio-style',
         get_stylesheet_uri(),
         array('twentytwentyfour-style'),
-        wp_get_theme()->get('Version')
+        $child_version
     );
 
     // カスタムJavaScript
@@ -37,7 +44,7 @@ function kashis_studio_enqueue_styles() {
         'kashis-studio-theme-js',
         get_stylesheet_directory_uri() . '/assets/js/theme.js',
         array(),
-        wp_get_theme()->get('Version'),
+        $child_version,
         true // フッターで読み込む
     );
 }
@@ -139,11 +146,12 @@ function kashis_studio_seo_meta_tags() {
     // メタディスクリプション
     if (is_singular()) {
         // 個別投稿・ページ
-        global $post;
-        if (has_excerpt($post)) {
+        if (has_excerpt()) {
             $description = get_the_excerpt();
         } else {
-            $description = wp_trim_words(strip_tags($post->post_content), 30, '...');
+            // get_the_content()でフィルター適用済みコンテンツを取得
+            $content = apply_filters('the_content', get_post_field('post_content'));
+            $description = wp_trim_words(wp_strip_all_tags($content), 30, '...');
         }
     } elseif (is_home() || is_front_page()) {
         // ホームページ
