@@ -5,7 +5,7 @@ Description: カシスタジオ専用テーマ - Atlassian Design System準拠
 Author: Studio Admin
 Author URI: https://kashis-studio.example.com
 Template: twentytwentyfour
-Version: 1.0.6
+Version: 1.0.7
 Requires at least: 6.4
 Tested up to: 6.8
 Requires PHP: 7.2
@@ -88,6 +88,10 @@ Text Domain: kashis-studio
   --shadow-sm: 0 1px 1px rgba(9, 30, 66, 0.25), 0 0 1px rgba(9, 30, 66, 0.31);
   --shadow-md: 0 4px 8px -2px rgba(9, 30, 66, 0.25), 0 0 1px rgba(9, 30, 66, 0.31);
   --shadow-lg: 0 8px 16px -4px rgba(9, 30, 66, 0.25), 0 0 1px rgba(9, 30, 66, 0.31);
+
+  /* Transitions */
+  --transition-base: 150ms ease;
+  --transition-slow: 300ms ease;
 }
 
 /* ==========================================================================

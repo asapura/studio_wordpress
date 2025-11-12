@@ -25,7 +25,8 @@ function kashis_studio_reservation_embed($atts) {
         // カスタムフィールドから埋め込みコードを取得
         $reservation_code = get_option('kashis_studio_reservation_code');
         if (!empty($reservation_code)) {
-            echo $reservation_code;
+            // HTMLコードをサニタイズして出力（XSS対策）
+            echo wp_kses_post($reservation_code);
         }
         ?>
     </div>

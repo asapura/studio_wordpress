@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
 /**
  * Theme Version
  */
-define('KASHIS_STUDIO_VERSION', '1.0.6');
+define('KASHIS_STUDIO_VERSION', '1.0.7');
 
 /**
  * Load Theme Modules

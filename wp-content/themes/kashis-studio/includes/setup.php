@@ -76,6 +76,17 @@ add_action('after_setup_theme', 'kashis_studio_setup');
 
 // ブロックエディター設定
 function kashis_studio_editor_settings() {
+    // ブロックエディターのサポートを追加
+    add_theme_support('editor-styles');
+    add_theme_support('wp-block-styles');
+    add_theme_support('responsive-embeds');
+    add_theme_support('align-wide');
+    add_theme_support('custom-spacing');
+    add_theme_support('custom-line-height');
+    add_theme_support('custom-units');
+    add_theme_support('link-color');
+    add_theme_support('border');
+
     // エディターのカラーパレットを無効化（theme.jsonで管理）
     add_theme_support('editor-color-palette');
     add_theme_support('disable-custom-colors');
@@ -83,5 +94,8 @@ function kashis_studio_editor_settings() {
     // エディターのフォントサイズを無効化（theme.jsonで管理）
     add_theme_support('editor-font-sizes');
     add_theme_support('disable-custom-font-sizes');
+
+    // エディター用スタイルの読み込み
+    add_editor_style('style.css');
 }
 add_action('after_setup_theme', 'kashis_studio_editor_settings');
