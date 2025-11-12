@@ -39,8 +39,12 @@ add_action('admin_menu', 'kashis_studio_add_dummy_data_page');
 function kashis_studio_dummy_data_page() {
     // ダミーデータ作成処理
     if (isset($_POST['create_dummy_data']) && check_admin_referer('kashis_studio_dummy_data_nonce')) {
-        kashis_studio_create_dummy_data();
-        echo '<div class="notice notice-success"><p>ダミーデータを作成しました！</p></div>';
+        $result = kashis_studio_create_dummy_data();
+        if ($result) {
+            echo '<div class="notice notice-success"><p>ダミーデータを作成しました！</p></div>';
+        } else {
+            echo '<div class="notice notice-error"><p>ダミーデータの作成中にエラーが発生しました。エラーログを確認してください。</p></div>';
+        }
     }
 
     // 既存のダミーデータをチェック
@@ -96,9 +100,48 @@ function kashis_studio_dummy_data_page() {
  * Sets a flag in options to prevent accidental duplicate creation.
  *
  * @since 1.0.7
- * @return void
+ * @since 1.0.8 Refactored into smaller functions with error handling
+ * @return bool True on success, false on failure
  */
 function kashis_studio_create_dummy_data() {
+    $errors = array();
+
+    // スタジオルーム作成
+    if (!kashis_studio_create_dummy_studio_rooms()) {
+        $errors[] = 'スタジオルームの作成に失敗しました';
+    }
+
+    // 固定ページ作成
+    if (!kashis_studio_create_dummy_pages()) {
+        $errors[] = '固定ページの作成に失敗しました';
+    }
+
+    // お知らせ記事作成
+    if (!kashis_studio_create_dummy_posts()) {
+        $errors[] = 'お知らせ記事の作成に失敗しました';
+    }
+
+    // エラーがある場合はログに記録
+    if (!empty($errors)) {
+        error_log('Kashis Studio Dummy Data Errors: ' . implode(', ', $errors));
+        return false;
+    }
+
+    // ダミーデータ作成完了フラグを設定
+    update_option('kashis_studio_dummy_data_created', true);
+    return true;
+}
+
+/**
+ * Create dummy studio room posts
+ *
+ * Generates a sample studio room post with custom fields and taxonomies
+ * including size, capacity, pricing, and equipment information.
+ *
+ * @since 1.0.8
+ * @return bool True on success, false on failure
+ */
+function kashis_studio_create_dummy_studio_rooms() {
     // 1. スタジオルームの作成
     $studio_post = array(
         'post_title'    => 'メインスタジオ',
@@ -134,21 +177,42 @@ function kashis_studio_create_dummy_data() {
 
     $studio_id = wp_insert_post($studio_post);
 
-    if ($studio_id) {
-        // カスタムフィールドを追加
-        update_post_meta($studio_id, 'studio_size', '30㎡（約18畳）');
-        update_post_meta($studio_id, 'studio_capacity', 15);
-        update_post_meta($studio_id, 'studio_base_price', 2500);
-        update_post_meta($studio_id, 'studio_floor', '4F');
-        update_post_meta($studio_id, 'studio_equipment_list', array('mirror', 'sound_system', 'bluetooth', 'air_conditioner', 'wifi', 'locker', 'changing_room', 'chair'));
-        update_post_meta($studio_id, 'studio_display_order', 1);
-
-        // タクソノミーを追加
-        wp_set_object_terms($studio_id, array('ダンス', 'ヨガ', '音楽練習'), 'studio_usage');
-        wp_set_object_terms($studio_id, array('全面鏡張り', '音響システム', 'Bluetooth対応'), 'studio_equipment');
+    // エラーチェック
+    if (is_wp_error($studio_id)) {
+        error_log('Failed to create studio room: ' . $studio_id->get_error_message());
+        return false;
     }
 
-    // 2. 固定ページの作成
+    if (!$studio_id) {
+        error_log('Failed to create studio room: wp_insert_post returned 0');
+        return false;
+    }
+
+    // カスタムフィールドを追加
+    update_post_meta($studio_id, 'studio_size', '30㎡（約18畳）');
+    update_post_meta($studio_id, 'studio_capacity', 15);
+    update_post_meta($studio_id, 'studio_base_price', 2500);
+    update_post_meta($studio_id, 'studio_floor', '4F');
+    update_post_meta($studio_id, 'studio_equipment_list', array('mirror', 'sound_system', 'bluetooth', 'air_conditioner', 'wifi', 'locker', 'changing_room', 'chair'));
+    update_post_meta($studio_id, 'studio_display_order', 1);
+
+    // タクソノミーを追加
+    wp_set_object_terms($studio_id, array('ダンス', 'ヨガ', '音楽練習'), 'studio_usage');
+    wp_set_object_terms($studio_id, array('全面鏡張り', '音響システム', 'Bluetooth対応'), 'studio_equipment');
+
+    return true;
+}
+
+/**
+ * Create dummy fixed pages
+ *
+ * Generates sample fixed pages for the site including Home, Pricing,
+ * Access, How to Use, Contact, and Reservation pages.
+ *
+ * @since 1.0.8
+ * @return bool True on success, false if any page creation fails
+ */
+function kashis_studio_create_dummy_pages() {
     $pages = array(
         array(
             'title' => 'ホーム',
@@ -352,6 +416,8 @@ function kashis_studio_create_dummy_data() {
         ),
     );
 
+    $success = true;
+
     foreach ($pages as $page_data) {
         $page = array(
             'post_title'    => $page_data['title'],
@@ -364,12 +430,37 @@ function kashis_studio_create_dummy_data() {
 
         $page_id = wp_insert_post($page);
 
-        if ($page_id && !empty($page_data['template'])) {
+        // エラーチェック
+        if (is_wp_error($page_id)) {
+            error_log('Failed to create page "' . $page_data['title'] . '": ' . $page_id->get_error_message());
+            $success = false;
+            continue;
+        }
+
+        if (!$page_id) {
+            error_log('Failed to create page "' . $page_data['title'] . '": wp_insert_post returned 0');
+            $success = false;
+            continue;
+        }
+
+        if (!empty($page_data['template'])) {
             update_post_meta($page_id, '_wp_page_template', $page_data['template']);
         }
     }
 
-    // 3. お知らせ記事の作成
+    return $success;
+}
+
+/**
+ * Create dummy blog posts
+ *
+ * Generates sample blog posts in the "お知らせ" (News) category
+ * including opening announcement, holiday schedule, and new pricing plans.
+ *
+ * @since 1.0.8
+ * @return bool True on success, false if any post creation fails
+ */
+function kashis_studio_create_dummy_posts() {
     $posts = array(
         array(
             'title' => 'カシスタジオがオープンしました！',
@@ -450,6 +541,13 @@ function kashis_studio_create_dummy_data() {
     // カテゴリーを作成
     $cat_id = wp_create_category('お知らせ');
 
+    if (!$cat_id || is_wp_error($cat_id)) {
+        error_log('Failed to create category "お知らせ"');
+        return false;
+    }
+
+    $success = true;
+
     foreach ($posts as $post_data) {
         $post = array(
             'post_title'    => $post_data['title'],
@@ -460,9 +558,21 @@ function kashis_studio_create_dummy_data() {
             'post_category' => array($cat_id),
         );
 
-        wp_insert_post($post);
+        $post_id = wp_insert_post($post);
+
+        // エラーチェック
+        if (is_wp_error($post_id)) {
+            error_log('Failed to create post "' . $post_data['title'] . '": ' . $post_id->get_error_message());
+            $success = false;
+            continue;
+        }
+
+        if (!$post_id) {
+            error_log('Failed to create post "' . $post_data['title'] . '": wp_insert_post returned 0');
+            $success = false;
+            continue;
+        }
     }
 
-    // ダミーデータ作成完了フラグを設定
-    update_option('kashis_studio_dummy_data_created', true);
+    return $success;
 }
