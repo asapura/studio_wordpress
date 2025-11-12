@@ -534,3 +534,82 @@ blockquote {
     page-break-after: avoid;
   }
 }
+
+/* ==========================================================================
+   Lightbox Component
+   ========================================================================== */
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.lightbox.closing {
+  animation: fadeOut 0.3s ease-out;
+}
+
+.lightbox-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  cursor: pointer;
+}
+
+.lightbox-content {
+  position: relative;
+  z-index: 1;
+  max-width: 90%;
+  max-height: 90%;
+  text-align: center;
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow-lg);
+}
+
+.lightbox-caption {
+  color: var(--atlassian-neutral-0);
+  margin-top: var(--space-16);
+  font-size: var(--font-size-16);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: transparent;
+  border: none;
+  color: var(--atlassian-neutral-0);
+  font-size: 3rem;
+  cursor: pointer;
+  line-height: 1;
+  transition: transform var(--transition-base);
+}
+
+.lightbox-close:hover {
+  transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}

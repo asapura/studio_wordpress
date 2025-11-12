@@ -7,6 +7,42 @@
   'use strict';
 
   // ==========================================================================
+  // 設定定数
+  // ==========================================================================
+
+  const CONFIG = {
+    // スクロール関連
+    SCROLL_THRESHOLD: 100,              // ヘッダー表示のしきい値
+    SCROLL_OFFSET: 20,                  // スムーススクロールのオフセット
+    BACK_TO_TOP_THRESHOLD: 300,         // 「トップへ戻る」ボタン表示しきい値
+
+    // アニメーション関連
+    COUNTER_DURATION: 2000,             // カウンターアニメーション時間（ミリ秒）
+    COUNTER_STEPS: 60,                  // カウンターアニメーションステップ数
+    LIGHTBOX_CLOSE_DURATION: 300,       // ライトボックス閉じる時間（ミリ秒）
+    PAGE_LOAD_DELAY: 100,               // ページロードアニメーション遅延（ミリ秒）
+    PAGE_LOAD_DURATION: 0.8,            // ページロードアニメーション時間（秒）
+    HERO_TRANSLATE_Y: 30,               // ヒーローセクションの初期移動量（px）
+    BUTTON_HOVER_TRANSLATE: -4,         // ボタンホバー時の移動量（px）
+    BUTTON_HOVER_SCALE: 1.1,            // ボタンホバー時のスケール
+
+    // Intersection Observer関連
+    OBSERVER_THRESHOLD_LOW: 0.1,        // スクロールアニメーション用しきい値
+    OBSERVER_THRESHOLD_MID: 0.5,        // カウンター用しきい値
+
+    // エラーメッセージスタイル
+    ERROR_FONT_SIZE: '0.875rem',        // エラーメッセージのフォントサイズ
+    ERROR_MARGIN_TOP: '0.5rem',         // エラーメッセージの上マージン
+
+    // 「トップへ戻る」ボタン
+    BACK_TO_TOP_SIZE: 48,               // ボタンサイズ（px）
+    BACK_TO_TOP_BOTTOM: '2rem',         // 下からの距離
+    BACK_TO_TOP_RIGHT: '2rem',          // 右からの距離
+    BACK_TO_TOP_FONT_SIZE: '1.5rem',    // フォントサイズ
+    BACK_TO_TOP_Z_INDEX: 999,           // z-index
+  };
+
+  // ==========================================================================
   // ヘッダースクロール効果
   // ==========================================================================
 
@@ -15,13 +51,12 @@
     if (!header) return;
 
     let lastScrollTop = 0;
-    const scrollThreshold = 100;
 
     window.addEventListener('scroll', function() {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
       // スクロールしたらヘッダーにクラスを追加
-      if (scrollTop > scrollThreshold) {
+      if (scrollTop > CONFIG.SCROLL_THRESHOLD) {
         header.classList.add('scrolled');
       } else {
         header.classList.remove('scrolled');
@@ -104,12 +139,15 @@
         if (href === '#' || href === '#!') return;
 
         const target = document.querySelector(href);
-        if (!target) return;
+        if (!target) {
+          console.warn(`[Kashis Studio] Target element not found: ${href}`);
+          return;
+        }
 
         e.preventDefault();
 
         const headerHeight = document.querySelector('.site-header')?.offsetHeight || 0;
-        const targetPosition = target.offsetTop - headerHeight - 20;
+        const targetPosition = target.offsetTop - headerHeight - CONFIG.SCROLL_OFFSET;
 
         window.scrollTo({
           top: targetPosition,
@@ -132,7 +170,7 @@
     const observerOptions = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.1
+      threshold: CONFIG.OBSERVER_THRESHOLD_LOW
     };
 
     const observer = new IntersectionObserver(function(entries) {
@@ -161,7 +199,10 @@
     galleryItems.forEach(item => {
       item.addEventListener('click', function() {
         const image = this.querySelector('.gallery-image');
-        if (!image) return;
+        if (!image) {
+          console.warn('[Kashis Studio] Gallery image not found in clicked item');
+          return;
+        }
 
         // ライトボックスを作成
         const lightbox = document.createElement('div');
@@ -204,7 +245,7 @@
     setTimeout(() => {
       lightbox.remove();
       document.body.style.overflow = '';
-    }, 300);
+    }, CONFIG.LIGHTBOX_CLOSE_DURATION);
   }
 
   // ==========================================================================
@@ -247,11 +288,14 @@
 
   function showError(input, message) {
     const formGroup = input.closest('.form-group');
-    if (!formGroup) return;
+    if (!formGroup) {
+      console.warn('[Kashis Studio] Form group not found for input:', input);
+      return;
+    }
 
     const error = document.createElement('p');
     error.className = 'form-error';
-    error.style.cssText = 'color: var(--atlassian-red-500); font-size: 0.875rem; margin-top: 0.5rem;';
+    error.style.cssText = `color: var(--atlassian-red-500); font-size: ${CONFIG.ERROR_FONT_SIZE}; margin-top: ${CONFIG.ERROR_MARGIN_TOP};`;
     error.textContent = message;
 
     formGroup.appendChild(error);
@@ -272,7 +316,7 @@
     const observerOptions = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.5
+      threshold: CONFIG.OBSERVER_THRESHOLD_MID
     };
 
     const observer = new IntersectionObserver(function(entries) {
@@ -289,9 +333,13 @@
 
   function animateCounter(element) {
     const target = parseInt(element.getAttribute('data-counter'));
-    const duration = 2000; // 2秒
-    const steps = 60;
-    const stepValue = target / steps;
+
+    if (isNaN(target)) {
+      console.warn('[Kashis Studio] Invalid counter value:', element.getAttribute('data-counter'));
+      return;
+    }
+
+    const stepValue = target / CONFIG.COUNTER_STEPS;
     let current = 0;
 
     const timer = setInterval(function() {
@@ -302,7 +350,7 @@
       } else {
         element.textContent = Math.floor(current).toLocaleString();
       }
-    }, duration / steps);
+    }, CONFIG.COUNTER_DURATION / CONFIG.COUNTER_STEPS);
   }
 
   // ==========================================================================
@@ -378,28 +426,28 @@
     button.innerHTML = '↑';
     button.style.cssText = `
       position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 48px;
-      height: 48px;
+      bottom: ${CONFIG.BACK_TO_TOP_BOTTOM};
+      right: ${CONFIG.BACK_TO_TOP_RIGHT};
+      width: ${CONFIG.BACK_TO_TOP_SIZE}px;
+      height: ${CONFIG.BACK_TO_TOP_SIZE}px;
       border-radius: 50%;
       background: var(--atlassian-blue-500);
       color: white;
       border: none;
-      font-size: 1.5rem;
+      font-size: ${CONFIG.BACK_TO_TOP_FONT_SIZE};
       cursor: pointer;
       opacity: 0;
       visibility: hidden;
       transition: all var(--transition-base);
       box-shadow: var(--shadow-lg);
-      z-index: 999;
+      z-index: ${CONFIG.BACK_TO_TOP_Z_INDEX};
     `;
 
     document.body.appendChild(button);
 
     // スクロールで表示/非表示
     window.addEventListener('scroll', function() {
-      if (window.pageYOffset > 300) {
+      if (window.pageYOffset > CONFIG.BACK_TO_TOP_THRESHOLD) {
         button.style.opacity = '1';
         button.style.visibility = 'visible';
       } else {
@@ -418,7 +466,7 @@
 
     // ホバー効果
     button.addEventListener('mouseenter', function() {
-      this.style.transform = 'translateY(-4px)';
+      this.style.transform = `translateY(${CONFIG.BUTTON_HOVER_TRANSLATE}px)`;
     });
 
     button.addEventListener('mouseleave', function() {
@@ -437,13 +485,13 @@
     const heroContent = document.querySelector('.hero-content');
     if (heroContent) {
       heroContent.style.opacity = '0';
-      heroContent.style.transform = 'translateY(30px)';
+      heroContent.style.transform = `translateY(${CONFIG.HERO_TRANSLATE_Y}px)`;
 
       setTimeout(() => {
-        heroContent.style.transition = 'all 0.8s ease-out';
+        heroContent.style.transition = `all ${CONFIG.PAGE_LOAD_DURATION}s ease-out`;
         heroContent.style.opacity = '1';
         heroContent.style.transform = 'translateY(0)';
-      }, 100);
+      }, CONFIG.PAGE_LOAD_DELAY);
     }
   }
 
@@ -503,88 +551,5 @@
 
     console.log('🎨 Kashis Studio Theme Loaded');
   }
-
-  // ==========================================================================
-  // ライトボックス用スタイルを動的に追加
-  // ==========================================================================
-
-  const lightboxStyles = document.createElement('style');
-  lightboxStyles.textContent = `
-    .lightbox {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      animation: fadeIn 0.3s ease-out;
-    }
-
-    .lightbox.closing {
-      animation: fadeOut 0.3s ease-out;
-    }
-
-    .lightbox-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.9);
-      cursor: pointer;
-    }
-
-    .lightbox-content {
-      position: relative;
-      z-index: 1;
-      max-width: 90%;
-      max-height: 90%;
-      text-align: center;
-    }
-
-    .lightbox-content img {
-      max-width: 100%;
-      max-height: 80vh;
-      border-radius: 8px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    }
-
-    .lightbox-caption {
-      color: white;
-      margin-top: 1rem;
-      font-size: 1.125rem;
-    }
-
-    .lightbox-close {
-      position: absolute;
-      top: -40px;
-      right: 0;
-      background: transparent;
-      border: none;
-      color: white;
-      font-size: 3rem;
-      cursor: pointer;
-      line-height: 1;
-      transition: transform 0.2s;
-    }
-
-    .lightbox-close:hover {
-      transform: scale(1.1);
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes fadeOut {
-      from { opacity: 1; }
-      to { opacity: 0; }
-    }
-  `;
-  document.head.appendChild(lightboxStyles);
 
 })();

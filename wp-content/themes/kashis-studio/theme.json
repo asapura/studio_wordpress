@@ -40,31 +40,6 @@
           "name": "Neutral 50"
         },
         {
-          "slug": "neutral-60",
-          "color": "#B3BAC5",
-          "name": "Neutral 60"
-        },
-        {
-          "slug": "neutral-70",
-          "color": "#A5ADBA",
-          "name": "Neutral 70"
-        },
-        {
-          "slug": "neutral-80",
-          "color": "#97A0AF",
-          "name": "Neutral 80"
-        },
-        {
-          "slug": "neutral-90",
-          "color": "#8993A4",
-          "name": "Neutral 90"
-        },
-        {
-          "slug": "neutral-100",
-          "color": "#7A869A",
-          "name": "Neutral 100"
-        },
-        {
           "slug": "neutral-200",
           "color": "#6B778C",
           "name": "Neutral 200"
@@ -75,24 +50,9 @@
           "name": "Neutral 300"
         },
         {
-          "slug": "neutral-400",
-          "color": "#505F79",
-          "name": "Neutral 400"
-        },
-        {
           "slug": "neutral-500",
           "color": "#42526E",
           "name": "Neutral 500"
-        },
-        {
-          "slug": "neutral-600",
-          "color": "#344563",
-          "name": "Neutral 600"
-        },
-        {
-          "slug": "neutral-700",
-          "color": "#253858",
-          "name": "Neutral 700"
         },
         {
           "slug": "neutral-800",
@@ -115,11 +75,6 @@
           "name": "Blue 100"
         },
         {
-          "slug": "blue-200",
-          "color": "#4C9AFF",
-          "name": "Blue 200"
-        },
-        {
           "slug": "blue-300",
           "color": "#2684FF",
           "name": "Blue 300"
@@ -140,29 +95,9 @@
           "name": "Blue 600"
         },
         {
-          "slug": "blue-700",
-          "color": "#0B3D91",
-          "name": "Blue 700"
-        },
-        {
           "slug": "green-50",
           "color": "#E3FCEF",
           "name": "Green 50"
-        },
-        {
-          "slug": "green-100",
-          "color": "#ABF5D1",
-          "name": "Green 100"
-        },
-        {
-          "slug": "green-200",
-          "color": "#79F2C0",
-          "name": "Green 200"
-        },
-        {
-          "slug": "green-300",
-          "color": "#57D9A3",
-          "name": "Green 300"
         },
         {
           "slug": "green-400",
@@ -180,21 +115,6 @@
           "name": "Red 50"
         },
         {
-          "slug": "red-100",
-          "color": "#FFBDAD",
-          "name": "Red 100"
-        },
-        {
-          "slug": "red-200",
-          "color": "#FF8F73",
-          "name": "Red 200"
-        },
-        {
-          "slug": "red-300",
-          "color": "#FF7452",
-          "name": "Red 300"
-        },
-        {
           "slug": "red-400",
           "color": "#FF5630",
           "name": "Red 400"
@@ -208,21 +128,6 @@
           "slug": "yellow-50",
           "color": "#FFFAE6",
           "name": "Yellow 50"
-        },
-        {
-          "slug": "yellow-100",
-          "color": "#FFF0B3",
-          "name": "Yellow 100"
-        },
-        {
-          "slug": "yellow-200",
-          "color": "#FFE380",
-          "name": "Yellow 200"
-        },
-        {
-          "slug": "yellow-300",
-          "color": "#FFC400",
-          "name": "Yellow 300"
         },
         {
           "slug": "yellow-400",
