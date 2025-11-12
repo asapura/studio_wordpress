@@ -15,7 +15,7 @@
  * @since 1.0.7
  * @return void
  */
-function kashis_studio_add_dummy_data_page() {
+function kashis_studio_add_dummy_data_page(): void {
     add_submenu_page(
         'kashis-studio-settings',
         'ダミーデータ作成',
@@ -36,7 +36,7 @@ add_action('admin_menu', 'kashis_studio_add_dummy_data_page');
  * @since 1.0.7
  * @return void
  */
-function kashis_studio_dummy_data_page() {
+function kashis_studio_dummy_data_page(): void {
     // ダミーデータ作成処理
     if (isset($_POST['create_dummy_data']) && check_admin_referer('kashis_studio_dummy_data_nonce')) {
         $result = kashis_studio_create_dummy_data();
@@ -103,7 +103,7 @@ function kashis_studio_dummy_data_page() {
  * @since 1.0.8 Refactored into smaller functions with error handling
  * @return bool True on success, false on failure
  */
-function kashis_studio_create_dummy_data() {
+function kashis_studio_create_dummy_data(): bool {
     $errors = array();
 
     // スタジオルーム作成
@@ -141,7 +141,7 @@ function kashis_studio_create_dummy_data() {
  * @since 1.0.8
  * @return bool True on success, false on failure
  */
-function kashis_studio_create_dummy_studio_rooms() {
+function kashis_studio_create_dummy_studio_rooms(): bool {
     // 1. スタジオルームの作成
     $studio_post = array(
         'post_title'    => 'メインスタジオ',
@@ -212,7 +212,7 @@ function kashis_studio_create_dummy_studio_rooms() {
  * @since 1.0.8
  * @return bool True on success, false if any page creation fails
  */
-function kashis_studio_create_dummy_pages() {
+function kashis_studio_create_dummy_pages(): bool {
     $pages = array(
         array(
             'title' => 'ホーム',
@@ -460,7 +460,7 @@ function kashis_studio_create_dummy_pages() {
  * @since 1.0.8
  * @return bool True on success, false if any post creation fails
  */
-function kashis_studio_create_dummy_posts() {
+function kashis_studio_create_dummy_posts(): bool {
     $posts = array(
         array(
             'title' => 'カシスタジオがオープンしました！',

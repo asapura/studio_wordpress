@@ -16,7 +16,7 @@
  * @since 1.0.7
  * @return void
  */
-function kashis_studio_add_help_menu() {
+function kashis_studio_add_help_menu(): void {
     add_submenu_page(
         'kashis-studio-settings',
         'ブロックエディターの使い方',
@@ -46,7 +46,7 @@ add_action('admin_menu', 'kashis_studio_add_help_menu', 11);
  * @since 1.0.8 Refactored to use external template file
  * @return void
  */
-function kashis_studio_help_page() {
+function kashis_studio_help_page(): void {
     $template_path = get_stylesheet_directory() . '/templates/admin-help-page.php';
 
     if (file_exists($template_path)) {

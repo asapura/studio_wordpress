@@ -59,7 +59,7 @@ require_once get_stylesheet_directory() . '/includes/admin.php';
  * @since 1.0.6
  * @return array Theme details including name, version, author, and parent theme
  */
-function kashis_studio_get_theme_info() {
+function kashis_studio_get_theme_info(): array {
     return array(
         'name'    => 'Kashis Studio',
         'version' => KASHIS_STUDIO_VERSION,
@@ -77,7 +77,7 @@ function kashis_studio_get_theme_info() {
  * @since 1.0.6
  * @return void
  */
-function kashis_studio_simplify_admin() {
+function kashis_studio_simplify_admin(): void {
     // 管理者以外の場合、一部のメニューを非表示
     if (!current_user_can('manage_options')) {
         remove_menu_page('edit-comments.php'); // コメント
@@ -96,7 +96,7 @@ add_action('admin_menu', 'kashis_studio_simplify_admin', 999);
  * @param WP_Admin_Bar $wp_admin_bar WordPress admin bar object
  * @return void
  */
-function kashis_studio_admin_bar_help($wp_admin_bar) {
+function kashis_studio_admin_bar_help(WP_Admin_Bar $wp_admin_bar): void {
     $wp_admin_bar->add_node(array(
         'id'    => 'kashis-studio-help',
         'title' => '📘 編集ガイド',

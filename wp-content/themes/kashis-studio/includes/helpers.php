@@ -20,7 +20,7 @@
  * @param string $key The information key to retrieve
  * @return string The requested studio information or empty string
  */
-function kashis_get_studio_info($key) {
+function kashis_get_studio_info(string $key): string {
     static $info = null;
 
     // キャッシュが未初期化の場合のみget_option()を実行
