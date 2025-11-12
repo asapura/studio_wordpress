@@ -62,31 +62,31 @@ function kashis_studio_settings_page() {
                 <tr>
                     <th scope="row"><label for="kashis_studio_phone">電話番号</label></th>
                     <td>
-                        <input type="text" name="kashis_studio_phone" id="kashis_studio_phone" value="<?php echo esc_attr(get_option('kashis_studio_phone', '03-1234-5678')); ?>" class="regular-text">
+                        <input type="text" name="kashis_studio_phone" id="kashis_studio_phone" value="<?php echo esc_attr(get_option('kashis_studio_phone', KASHIS_STUDIO_DEFAULT_PHONE)); ?>" class="regular-text">
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="kashis_studio_email">メールアドレス</label></th>
                     <td>
-                        <input type="email" name="kashis_studio_email" id="kashis_studio_email" value="<?php echo esc_attr(get_option('kashis_studio_email', 'info@kashis-studio.example.com')); ?>" class="regular-text">
+                        <input type="email" name="kashis_studio_email" id="kashis_studio_email" value="<?php echo esc_attr(get_option('kashis_studio_email', KASHIS_STUDIO_DEFAULT_EMAIL)); ?>" class="regular-text">
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="kashis_studio_address">住所</label></th>
                     <td>
-                        <input type="text" name="kashis_studio_address" id="kashis_studio_address" value="<?php echo esc_attr(get_option('kashis_studio_address', '東京都渋谷区〇〇1-2-3 〇〇ビル4F')); ?>" class="regular-text">
+                        <input type="text" name="kashis_studio_address" id="kashis_studio_address" value="<?php echo esc_attr(get_option('kashis_studio_address', KASHIS_STUDIO_DEFAULT_ADDRESS)); ?>" class="regular-text">
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="kashis_studio_hours">営業時間</label></th>
                     <td>
-                        <input type="text" name="kashis_studio_hours" id="kashis_studio_hours" value="<?php echo esc_attr(get_option('kashis_studio_hours', '平日 10:00-22:00 / 土日祝 9:00-22:00')); ?>" class="regular-text">
+                        <input type="text" name="kashis_studio_hours" id="kashis_studio_hours" value="<?php echo esc_attr(get_option('kashis_studio_hours', KASHIS_STUDIO_DEFAULT_HOURS)); ?>" class="regular-text">
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="kashis_studio_access">アクセス</label></th>
                     <td>
-                        <textarea name="kashis_studio_access" id="kashis_studio_access" rows="3" cols="50" class="large-text"><?php echo esc_textarea(get_option('kashis_studio_access', 'JR山手線 渋谷駅 徒歩5分')); ?></textarea>
+                        <textarea name="kashis_studio_access" id="kashis_studio_access" rows="3" cols="50" class="large-text"><?php echo esc_textarea(get_option('kashis_studio_access', KASHIS_STUDIO_DEFAULT_ACCESS)); ?></textarea>
                     </td>
                 </tr>
             </table>
@@ -114,27 +114,27 @@ function kashis_studio_register_settings() {
     register_setting('kashis_studio_settings', 'kashis_studio_phone', array(
         'type' => 'string',
         'sanitize_callback' => 'sanitize_text_field',
-        'default' => '03-1234-5678'
+        'default' => KASHIS_STUDIO_DEFAULT_PHONE
     ));
     register_setting('kashis_studio_settings', 'kashis_studio_email', array(
         'type' => 'string',
         'sanitize_callback' => 'sanitize_email',
-        'default' => 'info@kashis-studio.example.com'
+        'default' => KASHIS_STUDIO_DEFAULT_EMAIL
     ));
     register_setting('kashis_studio_settings', 'kashis_studio_address', array(
         'type' => 'string',
         'sanitize_callback' => 'sanitize_text_field',
-        'default' => '東京都渋谷区〇〇1-2-3 〇〇ビル4F'
+        'default' => KASHIS_STUDIO_DEFAULT_ADDRESS
     ));
     register_setting('kashis_studio_settings', 'kashis_studio_hours', array(
         'type' => 'string',
         'sanitize_callback' => 'sanitize_text_field',
-        'default' => '平日 10:00-22:00 / 土日祝 9:00-22:00'
+        'default' => KASHIS_STUDIO_DEFAULT_HOURS
     ));
     register_setting('kashis_studio_settings', 'kashis_studio_access', array(
         'type' => 'string',
         'sanitize_callback' => 'sanitize_textarea_field',
-        'default' => 'JR山手線 渋谷駅 徒歩5分'
+        'default' => KASHIS_STUDIO_DEFAULT_ACCESS
     ));
 }
 add_action('admin_init', 'kashis_studio_register_settings');

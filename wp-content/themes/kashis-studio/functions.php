@@ -17,6 +17,20 @@ if (!defined('ABSPATH')) {
 define('KASHIS_STUDIO_VERSION', '1.0.7');
 
 /**
+ * Default Studio Information Constants
+ *
+ * デフォルトのスタジオ情報定数
+ * 複数ファイルで使用されるデフォルト値を一元管理
+ *
+ * @since 1.0.8
+ */
+define('KASHIS_STUDIO_DEFAULT_PHONE', '03-1234-5678');
+define('KASHIS_STUDIO_DEFAULT_EMAIL', 'info@kashis-studio.example.com');
+define('KASHIS_STUDIO_DEFAULT_ADDRESS', '東京都渋谷区〇〇1-2-3 〇〇ビル4F');
+define('KASHIS_STUDIO_DEFAULT_HOURS', '平日 10:00-22:00 / 土日祝 9:00-22:00');
+define('KASHIS_STUDIO_DEFAULT_ACCESS', 'JR山手線 渋谷駅 徒歩5分');
+
+/**
  * Load Theme Modules
  *
  * テーマの機能をモジュール化し、保守性を向上させました。
