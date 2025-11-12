@@ -2,34 +2,62 @@
 
 <!-- wp:group {"tagName":"main","align":"full","layout":{"type":"constrained"}} -->
 <main class="wp-block-group alignfull">
-    <!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"2rem","bottom":"2rem"}}}} -->
-    <div class="wp-block-group alignwide" style="padding-top:2rem;padding-bottom:2rem">
-        <!-- wp:post-title {"level":1,"style":{"typography":{"fontSize":"2.5rem","fontWeight":"700"}},"textColor":"primary"} /-->
+    <!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"48px","bottom":"48px"}}}} -->
+    <div class="wp-block-group alignwide" style="padding-top:48px;padding-bottom:48px">
+        <!-- wp:post-title {"level":1,"fontSize":"35","textColor":"blue-500"} /-->
 
-        <!-- wp:post-featured-image {"height":"500px","style":{"spacing":{"margin":{"top":"2rem","bottom":"2rem"}}}} /-->
+        <!-- wp:spacer {"height":"32px"} -->
+        <div style="height:32px" aria-hidden="true" class="wp-block-spacer"></div>
+        <!-- /wp:spacer -->
+
+        <!-- wp:post-featured-image {"height":"500px","style":{"border":{"radius":"3px"}}} /-->
+
+        <!-- wp:spacer {"height":"32px"} -->
+        <div style="height:32px" aria-hidden="true" class="wp-block-spacer"></div>
+        <!-- /wp:spacer -->
 
         <!-- wp:post-content {"layout":{"type":"constrained"}} /-->
 
-        <!-- wp:separator {"style":{"spacing":{"margin":{"top":"3rem","bottom":"3rem"}}},"backgroundColor":"background-light"} -->
-        <hr class="wp-block-separator has-text-color has-background-color has-background has-background-light-background-color" style="margin-top:3rem;margin-bottom:3rem"/>
+        <!-- wp:spacer {"height":"48px"} -->
+        <div style="height:48px" aria-hidden="true" class="wp-block-spacer"></div>
+        <!-- /wp:spacer -->
+
+        <!-- wp:separator {"backgroundColor":"neutral-30"} -->
+        <hr class="wp-block-separator has-text-color has-background-color has-background has-neutral-30-background-color"/>
         <!-- /wp:separator -->
 
-        <!-- wp:heading {"level":2,"style":{"typography":{"fontSize":"2rem"}},"textColor":"primary"} -->
-        <h2 class="wp-block-heading has-primary-color has-text-color" style="font-size:2rem">スタジオ情報</h2>
+        <!-- wp:spacer {"height":"48px"} -->
+        <div style="height:48px" aria-hidden="true" class="wp-block-spacer"></div>
+        <!-- /wp:spacer -->
+
+        <!-- wp:heading {"level":2,"fontSize":"29","textColor":"blue-500"} -->
+        <h2 class="wp-block-heading has-blue-500-color has-text-color has-29-font-size">スタジオ情報</h2>
         <!-- /wp:heading -->
 
-        <!-- wp:paragraph -->
-        <p>※ここにACFのカスタムフィールドで設定した情報が表示されます（実装時にテンプレートタグを使用）</p>
+        <!-- wp:spacer {"height":"24px"} -->
+        <div style="height:24px" aria-hidden="true" class="wp-block-spacer"></div>
+        <!-- /wp:spacer -->
+
+        <!-- wp:paragraph {"textColor":"neutral-500","fontSize":"14"} -->
+        <p class="has-neutral-500-color has-text-color has-14-font-size">※ここにACFのカスタムフィールドで設定した情報が表示されます（実装時にテンプレートタグを使用）</p>
         <!-- /wp:paragraph -->
 
-        <!-- wp:separator {"style":{"spacing":{"margin":{"top":"3rem","bottom":"3rem"}}},"backgroundColor":"background-light"} -->
-        <hr class="wp-block-separator has-text-color has-background-color has-background has-background-light-background-color" style="margin-top:3rem;margin-bottom:3rem"/>
+        <!-- wp:spacer {"height":"48px"} -->
+        <div style="height:48px" aria-hidden="true" class="wp-block-spacer"></div>
+        <!-- /wp:spacer -->
+
+        <!-- wp:separator {"backgroundColor":"neutral-30"} -->
+        <hr class="wp-block-separator has-text-color has-background-color has-background has-neutral-30-background-color"/>
         <!-- /wp:separator -->
+
+        <!-- wp:spacer {"height":"48px"} -->
+        <div style="height:48px" aria-hidden="true" class="wp-block-spacer"></div>
+        <!-- /wp:spacer -->
 
         <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
         <div class="wp-block-buttons">
-            <!-- wp:button {"backgroundColor":"primary","className":"btn-primary"} -->
-            <div class="wp-block-button btn-primary"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button" href="/reservation">今すぐ予約する</a></div>
+            <!-- wp:button {"backgroundColor":"green-400","textColor":"neutral-0"} -->
+            <div class="wp-block-button"><a class="wp-block-button__link has-neutral-0-color has-green-400-background-color has-text-color has-background wp-element-button" href="/reservation">今すぐ予約する</a></div>
             <!-- /wp:button -->
         </div>
         <!-- /wp:buttons -->

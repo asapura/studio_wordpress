@@ -251,7 +251,7 @@
 
     const error = document.createElement('p');
     error.className = 'form-error';
-    error.style.cssText = 'color: var(--color-accent-danger); font-size: 0.875rem; margin-top: 0.5rem;';
+    error.style.cssText = 'color: var(--atlassian-red-500); font-size: 0.875rem; margin-top: 0.5rem;';
     error.textContent = message;
 
     formGroup.appendChild(error);
@@ -383,7 +383,7 @@
       width: 48px;
       height: 48px;
       border-radius: 50%;
-      background: var(--color-primary);
+      background: var(--atlassian-blue-500);
       color: white;
       border: none;
       font-size: 1.5rem;
