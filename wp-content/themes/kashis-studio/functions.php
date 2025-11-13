@@ -16,8 +16,9 @@ if (!defined('ABSPATH')) {
  *
  * @since 1.0.6
  * @since 1.0.8 Complete refactoring - Security, Performance, Accessibility, Code Quality
+ * @since 1.0.10 Legal pages implementation - Privacy Policy, Terms of Service, Cookie Policy, Tokushoho
  */
-define('KASHIS_STUDIO_VERSION', '1.0.8');
+define('KASHIS_STUDIO_VERSION', '1.0.10');
 
 /**
  * Default Studio Information Constants
@@ -84,6 +85,9 @@ require_once get_stylesheet_directory() . '/includes/admin.php';
 
 // 強化されたサンプルデータ生成
 require_once get_stylesheet_directory() . '/includes/sample-data-enhanced.php';
+
+// 法的ページ生成（プライバシーポリシー、特商法、利用規約、Cookie）
+require_once get_stylesheet_directory() . '/includes/legal-pages.php';
 
 /**
  * Get theme information

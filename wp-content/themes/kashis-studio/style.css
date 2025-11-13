@@ -5,7 +5,7 @@ Description: カシスタジオ専用テーマ - Atlassian Design System準拠�
 Author: Studio Admin
 Author URI: https://kashis-studio.example.com
 Template: twentytwentyfour
-Version: 1.0.8
+Version: 1.0.10
 Requires at least: 6.4
 Tested up to: 6.8
 Requires PHP: 7.4
@@ -15,6 +15,22 @@ Text Domain: kashis-studio
 Tags: studio, rental, atlassian, modern, accessible
 
 Changelog:
+v1.0.10 - 法的ページ実装完了（2025-11-13）
+  - プライバシーポリシーページ自動生成（個人情報保護法準拠）
+  - 特定商取引法に基づく表記ページ自動生成
+  - 利用規約ページ自動生成（14条の包括的な規約）
+  - Cookieポリシーページ自動生成（GDPR対応）
+  - WordPress設定との自動連携（住所、電話、メール等）
+  - 管理画面から1クリックで法的ページ作成
+  - 日本の法律・規制に完全準拠
+  - 各ページ間の相互リンク対応
+
+v1.0.9 - デザインカスタマイズ性極端向上（2025-11-13）
+  - 30以上の高度なカスタマイザーオプション追加
+  - 充実したサンプルデータ（6スタジオ、Unsplash画像）
+  - CSS変数システムによる動的スタイリング
+  - リアルタイムプレビュー（postMessage）対応
+
 v1.0.8 - 完全リファクタリング完了（2025-11-13）
   - Phase 1: UX Foundation（6機能）
   - Phase 2: Custom Gutenberg Blocks（6ブロック）
