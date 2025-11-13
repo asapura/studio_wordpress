@@ -78,7 +78,7 @@ function kashis_studio_render_pricing_table_block(array $attributes): string {
                 <?php
                 $featured = isset($plan['featured']) && $plan['featured'];
                 ?>
-                <div class="kashis-pricing-plan <?php echo $featured ? 'featured' : ''; ?>" data-animate="scale-up" data-animate-delay="<?php echo ($index * 100); ?>">
+                <div class="kashis-pricing-plan <?php echo $featured ? 'featured' : ''; ?>" data-animate="scale-up" data-animate-delay="<?php echo absint($index * 100); ?>">
                     <?php if ($featured): ?>
                         <div class="kashis-plan-badge">おすすめ</div>
                     <?php endif; ?>

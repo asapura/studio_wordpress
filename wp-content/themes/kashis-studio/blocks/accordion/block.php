@@ -65,7 +65,7 @@ function kashis_studio_render_accordion_block(array $attributes): string {
     ?>
     <div class="kashis-accordion-block" data-block-id="<?php echo esc_attr($unique_id); ?>" data-allow-multiple="<?php echo $allow_multiple ? 'true' : 'false'; ?>">
         <?php foreach ($items as $index => $item): ?>
-            <div class="kashis-accordion-item" data-animate="fade-up" data-animate-delay="<?php echo ($index * 100); ?>">
+            <div class="kashis-accordion-item" data-animate="fade-up" data-animate-delay="<?php echo absint($index * 100); ?>">
                 <button class="kashis-accordion-header" aria-expanded="false">
                     <span class="kashis-accordion-question"><?php echo esc_html($item['question']); ?></span>
                     <span class="kashis-accordion-icon">

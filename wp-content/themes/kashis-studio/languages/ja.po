@@ -1,0 +1,400 @@
+# Japanese translation for Kashis Studio
+# Copyright (C) 2025 Kashis Studio Team
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Kashis Studio 1.0.8\n"
+"Report-Msgid-Bugs-To: https://github.com/yourusername/kashis-studio/issues\n"
+"POT-Creation-Date: 2025-11-13 00:00:00+0000\n"
+"PO-Revision-Date: 2025-11-13 04:00:00+0900\n"
+"Last-Translator: Kashis Studio Team\n"
+"Language-Team: Japanese\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: functions.php:15
+msgid "Primary Menu"
+msgstr "プライマリメニュー"
+
+#: functions.php:16
+msgid "Footer Menu"
+msgstr "フッターメニュー"
+
+#: includes/custom-post-types.php:20
+msgid "Studio Rooms"
+msgstr "スタジオルーム"
+
+#: includes/custom-post-types.php:21
+msgid "Studio Room"
+msgstr "スタジオルーム"
+
+#: includes/custom-post-types.php:22
+msgid "Add New"
+msgstr "新規追加"
+
+#: includes/custom-post-types.php:23
+msgid "Add New Room"
+msgstr "新しいルームを追加"
+
+#: includes/custom-post-types.php:24
+msgid "Edit Room"
+msgstr "ルームを編集"
+
+#: includes/custom-post-types.php:25
+msgid "New Room"
+msgstr "新しいルーム"
+
+#: includes/custom-post-types.php:26
+msgid "View Room"
+msgstr "ルームを表示"
+
+#: includes/custom-post-types.php:27
+msgid "View Rooms"
+msgstr "ルームを表示"
+
+#: includes/custom-post-types.php:28
+msgid "Search Rooms"
+msgstr "ルームを検索"
+
+#: includes/custom-post-types.php:29
+msgid "No rooms found"
+msgstr "ルームが見つかりませんでした"
+
+#: includes/custom-post-types.php:30
+msgid "No rooms found in Trash"
+msgstr "ゴミ箱にルームはありません"
+
+#: includes/widgets.php:21
+msgid "Sidebar"
+msgstr "サイドバー"
+
+#: includes/widgets.php:23
+msgid "Sidebar widget area"
+msgstr "サイドバーウィジェットエリア"
+
+#: includes/widgets.php:26
+msgid "Footer 1"
+msgstr "フッター1"
+
+#: includes/widgets.php:28
+msgid "Footer widget area 1"
+msgstr "フッターウィジェットエリア1"
+
+#: includes/widgets.php:31
+msgid "Footer 2"
+msgstr "フッター2"
+
+#: includes/widgets.php:33
+msgid "Footer widget area 2"
+msgstr "フッターウィジェットエリア2"
+
+#: includes/widgets.php:36
+msgid "Footer 3"
+msgstr "フッター3"
+
+#: includes/widgets.php:38
+msgid "Footer widget area 3"
+msgstr "フッターウィジェットエリア3"
+
+#: includes/widgets.php:65
+msgid "Studio Room Search"
+msgstr "スタジオルーム検索"
+
+#: includes/widgets.php:66
+msgid "Advanced studio room search widget"
+msgstr "高度なスタジオルーム検索ウィジェット"
+
+#: includes/widgets.php:75
+msgid "Title:"
+msgstr "タイトル："
+
+#: includes/widgets.php:82
+msgid "Room Search"
+msgstr "ルーム検索"
+
+#: includes/widgets.php:87
+msgid "Search..."
+msgstr "検索..."
+
+#: includes/widgets.php:93
+msgid "All Categories"
+msgstr "すべてのカテゴリー"
+
+#: includes/widgets.php:103
+msgid "Search Rooms"
+msgstr "ルームを検索"
+
+#: includes/customizer.php:35
+msgid "Kashis Studio Settings"
+msgstr "カシスタジオ設定"
+
+#: includes/customizer.php:36
+msgid "Customize your Kashis Studio theme"
+msgstr "カシスタジオテーマをカスタマイズ"
+
+#: includes/customizer.php:42
+msgid "Branding"
+msgstr "ブランディング"
+
+#: includes/customizer.php:49
+msgid "Colors"
+msgstr "カラー"
+
+#: includes/customizer.php:56
+msgid "Layout"
+msgstr "レイアウト"
+
+#: includes/customizer.php:63
+msgid "Typography"
+msgstr "タイポグラフィ"
+
+#: includes/customizer.php:70
+msgid "Advanced"
+msgstr "詳細設定"
+
+#: includes/customizer.php:79
+msgid "Primary Color"
+msgstr "プライマリカラー"
+
+#: includes/customizer.php:87
+msgid "Secondary Color"
+msgstr "セカンダリカラー"
+
+#: includes/customizer.php:95
+msgid "Container Width (px)"
+msgstr "コンテナ幅（px）"
+
+#: includes/customizer.php:103
+msgid "Sticky Header"
+msgstr "固定ヘッダー"
+
+#: includes/customizer.php:111
+msgid "Font Size (px)"
+msgstr "フォントサイズ（px）"
+
+#: includes/customizer.php:222
+msgid "Default (Atlassian Blue)"
+msgstr "デフォルト（アトラシアンブルー）"
+
+#: includes/customizer.php:223
+msgid "Warm (Red & Amber)"
+msgstr "ウォーム（レッド＆アンバー）"
+
+#: includes/customizer.php:224
+msgid "Cool (Cyan & Blue)"
+msgstr "クール（シアン＆ブルー）"
+
+#: includes/customizer.php:225
+msgid "Professional (Navy & Gray)"
+msgstr "プロフェッショナル（ネイビー＆グレー）"
+
+#: includes/customizer.php:226
+msgid "Elegant (Purple & Lavender)"
+msgstr "エレガント（パープル＆ラベンダー）"
+
+#: includes/admin-dashboard-widget.php:24
+msgid "Kashis Studio Overview"
+msgstr "カシスタジオ概要"
+
+#: includes/admin-dashboard-widget.php:40
+msgid "Studio Rooms"
+msgstr "スタジオルーム"
+
+#: includes/admin-dashboard-widget.php:41
+msgid "Published"
+msgstr "公開済み"
+
+#: includes/admin-dashboard-widget.php:48
+msgid "Quick Actions"
+msgstr "クイックアクション"
+
+#: includes/admin-dashboard-widget.php:50
+msgid "Add New Room"
+msgstr "新しいルームを追加"
+
+#: includes/admin-dashboard-widget.php:51
+msgid "View All Rooms"
+msgstr "すべてのルームを表示"
+
+#: includes/admin-dashboard-widget.php:52
+msgid "Customize Theme"
+msgstr "テーマをカスタマイズ"
+
+#: includes/admin-dashboard-widget.php:53
+msgid "Theme Settings"
+msgstr "テーマ設定"
+
+#: includes/admin-dashboard-widget.php:59
+msgid "Tips & Resources"
+msgstr "ヒントとリソース"
+
+#: includes/admin-dashboard-widget.php:61
+msgid "Use high-quality images for rooms"
+msgstr "ルームには高品質な画像を使用してください"
+
+#: includes/admin-dashboard-widget.php:62
+msgid "Add detailed descriptions with pricing"
+msgstr "料金を含む詳細な説明を追加してください"
+
+#: includes/admin-dashboard-widget.php:63
+msgid "Enable favorites for better UX"
+msgstr "お気に入り機能を有効にして UX を向上させましょう"
+
+#: includes/admin-dashboard-widget.php:64
+msgid "Check the documentation for more features"
+msgstr "その他の機能についてはドキュメントをご確認ください"
+
+#: includes/theme-activation.php:80
+msgid "Welcome to Kashis Studio"
+msgstr "カシスタジオへようこそ"
+
+#: includes/theme-activation.php:84
+msgid "Thank you for choosing Kashis Studio! Get started quickly with the options below."
+msgstr "カシスタジオをお選びいただきありがとうございます！以下のオプションで素早く開始できます。"
+
+#: includes/theme-activation.php:90
+msgid "Quick Setup"
+msgstr "クイックセットアップ"
+
+#: includes/theme-activation.php:95
+msgid "Generate Sample Content"
+msgstr "サンプルコンテンツを生成"
+
+#: includes/theme-activation.php:96
+msgid "Create example rooms and pages"
+msgstr "サンプルのルームとページを作成"
+
+#: includes/theme-activation.php:100
+msgid "Open Customizer"
+msgstr "カスタマイザーを開く"
+
+#: includes/theme-activation.php:101
+msgid "Customize colors and layout"
+msgstr "カラーとレイアウトをカスタマイズ"
+
+#: includes/theme-activation.php:105
+msgid "View Block Showcase"
+msgstr "ブロックショーケースを表示"
+
+#: includes/theme-activation.php:106
+msgid "See all available blocks"
+msgstr "利用可能なすべてのブロックを確認"
+
+#: includes/theme-activation.php:110
+msgid "Read Documentation"
+msgstr "ドキュメントを読む"
+
+#: includes/theme-activation.php:111
+msgid "Learn about features"
+msgstr "機能について学ぶ"
+
+#: includes/theme-activation.php:119
+msgid "Key Features"
+msgstr "主な機能"
+
+#: includes/theme-activation.php:122
+msgid "6 Custom Blocks"
+msgstr "6つのカスタムブロック"
+
+#: includes/theme-activation.php:123
+msgid "Full Site Editing"
+msgstr "フルサイト編集"
+
+#: includes/theme-activation.php:124
+msgid "5 Color Presets"
+msgstr "5つのカラープリセット"
+
+#: includes/theme-activation.php:125
+msgid "Accessibility Ready"
+msgstr "アクセシビリティ対応"
+
+#: includes/theme-activation.php:126
+msgid "Performance Optimized"
+msgstr "パフォーマンス最適化"
+
+#: includes/theme-activation.php:127
+msgid "Mobile Responsive"
+msgstr "モバイルレスポンシブ"
+
+#: includes/block-patterns.php:27
+msgid "Secondary"
+msgstr "セカンダリー"
+
+#: includes/block-patterns.php:32
+msgid "Subtle"
+msgstr "サブトル"
+
+#: includes/block-patterns.php:37
+msgid "Success"
+msgstr "成功"
+
+#: includes/block-patterns.php:42
+msgid "Warning"
+msgstr "警告"
+
+#: includes/block-patterns.php:47
+msgid "Danger"
+msgstr "危険"
+
+#: includes/block-patterns.php:55
+msgid "Elevated (with shadow)"
+msgstr "浮き上がり（シャドウ付き）"
+
+#: includes/block-patterns.php:60
+msgid "Bordered"
+msgstr "ボーダー付き"
+
+#: includes/block-patterns.php:65
+msgid "Flat"
+msgstr "フラット"
+
+#: includes/block-patterns.php:73
+msgid "Circle"
+msgstr "円形"
+
+#: includes/block-patterns.php:78
+msgid "Shadow"
+msgstr "シャドウ"
+
+#: blocks/room-list/block.php:65
+msgid "No rooms found."
+msgstr "ルームが見つかりませんでした。"
+
+#: blocks/pricing-table/block.php:45
+msgid "Choose Plan"
+msgstr "プランを選択"
+
+#: blocks/accordion/block.php:42
+msgid "Open first item by default"
+msgstr "最初の項目をデフォルトで開く"
+
+#: blocks/timeline/block.php:38
+msgid "Vertical"
+msgstr "縦型"
+
+#: blocks/timeline/block.php:39
+msgid "Horizontal"
+msgstr "横型"
+
+#: blocks/testimonial/block.php:45
+msgid "columns"
+msgstr "カラム"
+
+#: blocks/cta/block.php:55
+msgid "Primary"
+msgstr "プライマリ"
+
+#: blocks/cta/block.php:56
+msgid "Secondary"
+msgstr "セカンダリ"
+
+#: blocks/cta/block.php:57
+msgid "Success"
+msgstr "成功"
+
+#: blocks/cta/block.php:58
+msgid "Info"
+msgstr "情報"

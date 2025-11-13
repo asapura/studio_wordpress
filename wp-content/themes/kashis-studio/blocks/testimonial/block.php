@@ -73,7 +73,7 @@ function kashis_studio_render_testimonial_block(array $attributes): string {
     <div class="kashis-testimonial-block">
         <div class="kashis-testimonial-grid" style="--columns: <?php echo esc_attr($columns); ?>;">
             <?php foreach ($testimonials as $index => $testimonial): ?>
-                <div class="kashis-testimonial-card" data-animate="fade-up" data-animate-delay="<?php echo ($index * 100); ?>">
+                <div class="kashis-testimonial-card" data-animate="fade-up" data-animate-delay="<?php echo absint($index * 100); ?>">
                     <div class="kashis-testimonial-header">
                         <?php if (!empty($testimonial['image'])): ?>
                             <img src="<?php echo esc_url($testimonial['image']); ?>" alt="<?php echo esc_attr($testimonial['name']); ?>" class="kashis-testimonial-avatar">
