@@ -69,3 +69,7 @@ yarn-error.log
 *.temp
 *.bak
 *.old
+
+# 一時ファイル・調査用ファイル
+analyze-noah-studio.js
+noah-studio.html

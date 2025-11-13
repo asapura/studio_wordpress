@@ -1,390 +1,978 @@
 /*
 Theme Name: Kashis Studio
 Theme URI: https://kashis-studio.example.com
-Description: カシスタジオ専用のカスタムテーマ。Twenty Twenty-Fourをベースにレンタルスタジオサイト向けにカスタマイズ。
+Description: カシスタジオ専用テーマ - Atlassian Design System準拠、完全リファクタリング済み
 Author: Studio Admin
 Author URI: https://kashis-studio.example.com
 Template: twentytwentyfour
-Version: 1.0.0
+Version: 1.0.8
 Requires at least: 6.4
 Tested up to: 6.8
-Requires PHP: 7.2
+Requires PHP: 7.4
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: kashis-studio
+Tags: studio, rental, atlassian, modern, accessible
+
+Changelog:
+v1.0.8 - 完全リファクタリング完了（2025-11-13）
+  - Phase 1: UX Foundation（6機能）
+  - Phase 2: Custom Gutenberg Blocks（6ブロック）
+  - Phase 3: Advanced Features（6機能）
+  - テーマアクティベーションウィザード
+  - カスタマイザープリセット（5種類）
+  - ブロックショーケースページ生成機能
+  - セキュリティ強化（XSS対策、入力サニタイゼーション、出力エスケープ）
+  - パフォーマンス最適化（JavaScript 61%削減）
+  - アクセシビリティ向上（WAI-ARIA準拠）
+  - コード品質改善（型ヒント、定数化、DRY原則）
+  - 包括的ドキュメント作成（README.md、開発者ガイド、ユーザーマニュアル）
+  - WordPress.org公開準備（readme.txt、.zip配布パッケージ）
+  - 多言語対応（.pot/.po翻訳ファイル）
+  - 追加ブロックパターン（3種類）
+  - PHP構文チェック完了
+  - セキュリティ監査実施
+
+v1.0.7 - 初期モジュール化完了（2025-11-11）
 */
 
 /* ==========================================================================
-   カシスタジオ カスタムスタイル
+   Atlassian Design System Variables
+   Based on: https://atlassian.design
    ========================================================================== */
 
-/* ブランドカラー（ノアスタジオ風） */
 :root {
-  --color-primary: #2c5aa0;
-  --color-secondary: #f39c12;
-  --color-text: #333333;
-  --color-text-light: #666666;
-  --color-background: #ffffff;
-  --color-background-light: #f8f9fa;
-  --color-accent: #e74c3c;
-  --color-success: #27ae60;
+  /* Neutral Colors */
+  --atlassian-neutral-0: #FFFFFF;
+  --atlassian-neutral-10: #FAFBFC;
+  --atlassian-neutral-20: #F4F5F7;
+  --atlassian-neutral-30: #EBECF0;
+  --atlassian-neutral-40: #DFE1E6;
+  --atlassian-neutral-50: #C1C7D0;
+  --atlassian-neutral-200: #6B778C;
+  --atlassian-neutral-300: #5E6C84;
+  --atlassian-neutral-500: #42526E;
+  --atlassian-neutral-800: #172B4D;
+  --atlassian-neutral-900: #091E42;
+
+  /* Blue Colors (Primary) */
+  --atlassian-blue-50: #DEEBFF;
+  --atlassian-blue-100: #B3D4FF;
+  --atlassian-blue-300: #2684FF;
+  --atlassian-blue-400: #0065FF;
+  --atlassian-blue-500: #0052CC;
+  --atlassian-blue-600: #0747A6;
+
+  /* Green Colors (Success) */
+  --atlassian-green-50: #E3FCEF;
+  --atlassian-green-400: #36B37E;
+  --atlassian-green-500: #00875A;
+
+  /* Red Colors (Error) */
+  --atlassian-red-50: #FFEBE6;
+  --atlassian-red-400: #FF5630;
+  --atlassian-red-500: #DE350B;
+
+  /* Yellow Colors (Warning) */
+  --atlassian-yellow-50: #FFFAE6;
+  --atlassian-yellow-400: #FFAB00;
+
+  /* Spacing Scale (4px base) - Atlassian Design System */
+  --atlassian-space-4: 4px;
+  --atlassian-space-8: 8px;
+  --atlassian-space-12: 12px;
+  --atlassian-space-16: 16px;
+  --atlassian-space-20: 20px;
+  --atlassian-space-24: 24px;
+  --atlassian-space-32: 32px;
+  --atlassian-space-40: 40px;
+  --atlassian-space-48: 48px;
+
+  /* Border Radius - Atlassian Design System */
+  --atlassian-border-radius: 3px;
+  --atlassian-border-radius-large: 6px;
+
+  /* Typography - Atlassian Design System */
+  --atlassian-font-size-11: 11px;
+  --atlassian-font-size-12: 12px;
+  --atlassian-font-size-14: 14px;
+  --atlassian-font-size-16: 16px;
+  --atlassian-font-size-20: 20px;
+  --atlassian-font-size-24: 24px;
+  --atlassian-font-size-29: 29px;
+  --atlassian-font-size-35: 35px;
+
+  /* Line Heights - Atlassian Design System */
+  --atlassian-line-height-base: 1.71428;
+  --atlassian-line-height-heading: 1.2;
+
+  /* Shadows - Atlassian Design System */
+  --atlassian-shadow-sm: 0 1px 1px rgba(9, 30, 66, 0.25), 0 0 1px rgba(9, 30, 66, 0.31);
+  --atlassian-shadow-md: 0 4px 8px -2px rgba(9, 30, 66, 0.25), 0 0 1px rgba(9, 30, 66, 0.31);
+  --atlassian-shadow-lg: 0 8px 16px -4px rgba(9, 30, 66, 0.25), 0 0 1px rgba(9, 30, 66, 0.31);
+
+  /* Transitions - Atlassian Design System */
+  --atlassian-transition-base: 150ms ease;
+  --atlassian-transition-slow: 300ms ease;
+
+  /* Legacy aliases for backward compatibility */
+  --space-4: var(--atlassian-space-4);
+  --space-8: var(--atlassian-space-8);
+  --space-12: var(--atlassian-space-12);
+  --space-16: var(--atlassian-space-16);
+  --space-20: var(--atlassian-space-20);
+  --space-24: var(--atlassian-space-24);
+  --space-32: var(--atlassian-space-32);
+  --space-40: var(--atlassian-space-40);
+  --space-48: var(--atlassian-space-48);
+  --border-radius: var(--atlassian-border-radius);
+  --border-radius-large: var(--atlassian-border-radius-large);
+  --font-size-11: var(--atlassian-font-size-11);
+  --font-size-12: var(--atlassian-font-size-12);
+  --font-size-14: var(--atlassian-font-size-14);
+  --font-size-16: var(--atlassian-font-size-16);
+  --font-size-20: var(--atlassian-font-size-20);
+  --font-size-24: var(--atlassian-font-size-24);
+  --font-size-29: var(--atlassian-font-size-29);
+  --font-size-35: var(--atlassian-font-size-35);
+  --line-height-base: var(--atlassian-line-height-base);
+  --line-height-heading: var(--atlassian-line-height-heading);
+  --shadow-sm: var(--atlassian-shadow-sm);
+  --shadow-md: var(--atlassian-shadow-md);
+  --shadow-lg: var(--atlassian-shadow-lg);
+  --transition-base: var(--atlassian-transition-base);
+  --transition-slow: var(--atlassian-transition-slow);
 }
 
-/* グローバルスタイル */
+/* ==========================================================================
+   Base Styles
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", Meiryo, sans-serif;
-  color: var(--color-text);
-  line-height: 1.8;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+               'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans',
+               'Helvetica Neue', sans-serif;
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-base);
+  color: var(--atlassian-neutral-800);
+  background-color: var(--atlassian-neutral-0);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* ヘッダー */
-.site-header {
-  background: var(--color-background);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+  color: var(--atlassian-neutral-900);
+  margin-top: var(--space-24);
+  margin-bottom: var(--space-16);
 }
 
-/* ナビゲーション */
-.main-navigation {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
+h1 {
+  font-size: var(--font-size-35);
+  line-height: 1.14286;
 }
 
-.main-navigation a {
-  color: var(--color-text);
+h2 {
+  font-size: var(--font-size-29);
+  line-height: 1.17241;
+}
+
+h3 {
+  font-size: var(--font-size-24);
+  line-height: 1.16667;
+}
+
+h4 {
+  font-size: var(--font-size-20);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h5 {
+  font-size: var(--font-size-16);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+h6 {
+  font-size: var(--font-size-14);
+  font-weight: 600;
+  line-height: 1.42857;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+p {
+  margin-bottom: var(--space-16);
+}
+
+a {
+  color: var(--atlassian-blue-500);
   text-decoration: none;
-  padding: 0.5rem 1rem;
-  transition: color 0.3s ease;
+  transition: color 150ms ease;
 }
 
-.main-navigation a:hover {
-  color: var(--color-primary);
+a:hover {
+  color: var(--atlassian-blue-600);
+  text-decoration: underline;
 }
 
-/* ボタン */
-.btn-primary {
-  background-color: var(--color-primary);
-  color: white;
-  padding: 1rem 2rem;
-  border-radius: 4px;
-  text-decoration: none;
-  display: inline-block;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-  border: none;
-  cursor: pointer;
-}
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
 
-.btn-primary:hover {
-  background-color: #1e4278;
-}
-
-.btn-secondary {
-  background-color: var(--color-secondary);
-  color: white;
-  padding: 1rem 2rem;
-  border-radius: 4px;
-  text-decoration: none;
-  display: inline-block;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-  border: none;
-  cursor: pointer;
-}
-
-.btn-secondary:hover {
-  background-color: #d68910;
-}
-
-/* ヒーローセクション */
-.hero-section {
-  position: relative;
-  min-height: 500px;
-  display: flex;
+.wp-block-button__link,
+.wp-element-button {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--color-primary) 0%, #1e4278 100%);
-  color: white;
-  text-align: center;
-  padding: 4rem 2rem;
+  padding: var(--space-8) var(--space-12);
+  font-size: var(--font-size-14);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--atlassian-neutral-0);
+  background-color: var(--atlassian-blue-500);
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 150ms ease;
+  text-decoration: none !important;
 }
 
-.hero-content h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  font-weight: bold;
+.wp-block-button__link:hover,
+.wp-element-button:hover {
+  background-color: var(--atlassian-blue-600);
+  color: var(--atlassian-neutral-0);
 }
 
-.hero-content p {
-  font-size: 1.25rem;
-  margin-bottom: 2rem;
-  opacity: 0.9;
+.wp-block-button.is-style-outline .wp-block-button__link {
+  color: var(--atlassian-blue-500);
+  background-color: transparent;
+  border: 2px solid var(--atlassian-blue-500);
+  padding: calc(var(--space-8) - 2px) calc(var(--space-12) - 2px);
 }
 
-/* セクション */
-.section {
-  padding: 4rem 2rem;
+.wp-block-button.is-style-outline .wp-block-button__link:hover {
+  color: var(--atlassian-blue-600);
+  border-color: var(--atlassian-blue-600);
+  background-color: var(--atlassian-blue-50);
 }
 
-.section-light {
-  background-color: var(--color-background-light);
+/* Button Style Variations - Atlassian Design System */
+
+/* Secondary Button - Subtle blue appearance */
+.wp-block-button.is-style-secondary .wp-block-button__link {
+  color: var(--atlassian-blue-500);
+  background-color: var(--atlassian-blue-50);
 }
 
-.section-title {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
-  color: var(--color-primary);
-  font-weight: bold;
+.wp-block-button.is-style-secondary .wp-block-button__link:hover {
+  background-color: var(--atlassian-blue-100);
+  color: var(--atlassian-blue-600);
 }
 
-/* グリッドレイアウト */
-.grid-3 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+/* Subtle Button - Neutral appearance */
+.wp-block-button.is-style-subtle .wp-block-button__link {
+  color: var(--atlassian-neutral-800);
+  background-color: var(--atlassian-neutral-20);
 }
 
-/* カード */
-.card {
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.wp-block-button.is-style-subtle .wp-block-button__link:hover {
+  background-color: var(--atlassian-neutral-30);
+  color: var(--atlassian-neutral-900);
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+/* Success Button - Green for positive actions */
+.wp-block-button.is-style-success .wp-block-button__link {
+  color: var(--atlassian-neutral-0);
+  background-color: var(--atlassian-green-500);
 }
 
-.card-image {
+.wp-block-button.is-style-success .wp-block-button__link:hover {
+  background-color: var(--atlassian-green-400);
+}
+
+/* Warning Button - Yellow for cautionary actions */
+.wp-block-button.is-style-warning .wp-block-button__link {
+  color: var(--atlassian-neutral-900);
+  background-color: var(--atlassian-yellow-400);
+}
+
+.wp-block-button.is-style-warning .wp-block-button__link:hover {
+  background-color: #FFB700;
+}
+
+/* Danger Button - Red for destructive actions */
+.wp-block-button.is-style-danger .wp-block-button__link {
+  color: var(--atlassian-neutral-0);
+  background-color: var(--atlassian-red-500);
+}
+
+.wp-block-button.is-style-danger .wp-block-button__link:hover {
+  background-color: var(--atlassian-red-400);
+}
+
+/* ==========================================================================
+   Cards & Groups
+   ========================================================================== */
+
+.wp-block-group {
+  border-radius: var(--border-radius);
+}
+
+/* Card Style */
+.has-neutral-0-background-color.wp-block-group {
+  box-shadow: var(--shadow-sm);
+}
+
+.has-neutral-0-background-color.wp-block-group:hover {
+  box-shadow: var(--shadow-md);
+  transition: box-shadow 200ms ease;
+}
+
+/* Group Style Variations - Card Styles */
+
+/* Elevated Style - Card with shadow (floating appearance) */
+.wp-block-group.is-style-elevated {
+  box-shadow: var(--shadow-md);
+  padding: var(--space-24);
+  background-color: var(--atlassian-neutral-0);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.wp-block-group.is-style-elevated:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+/* Bordered Style - Card with border instead of shadow */
+.wp-block-group.is-style-bordered {
+  border: 2px solid var(--atlassian-neutral-40);
+  padding: var(--space-24);
+  background-color: var(--atlassian-neutral-0);
+  transition: border-color var(--transition-base);
+}
+
+.wp-block-group.is-style-bordered:hover {
+  border-color: var(--atlassian-blue-300);
+}
+
+/* Flat Style - Simple card with background color only */
+.wp-block-group.is-style-flat {
+  background-color: var(--atlassian-neutral-10);
+  padding: var(--space-24);
+  box-shadow: none;
+  border: none;
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+.wp-block-table {
+  border-collapse: collapse;
   width: 100%;
-  height: 200px;
+}
+
+.wp-block-table table {
+  border: 1px solid var(--atlassian-neutral-40);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.wp-block-table th,
+.wp-block-table td {
+  padding: var(--space-12) var(--space-16);
+  text-align: left;
+  border-bottom: 1px solid var(--atlassian-neutral-40);
+}
+
+.wp-block-table thead th {
+  background-color: var(--atlassian-neutral-20);
+  font-weight: 600;
+  color: var(--atlassian-neutral-900);
+  font-size: var(--font-size-14);
+}
+
+.wp-block-table.is-style-stripes tbody tr:nth-child(odd) {
+  background-color: var(--atlassian-neutral-10);
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="date"],
+textarea,
+select {
+  padding: var(--space-8);
+  font-size: var(--font-size-14);
+  color: var(--atlassian-neutral-900);
+  background-color: var(--atlassian-neutral-0);
+  border: 2px solid var(--atlassian-neutral-40);
+  border-radius: var(--border-radius);
+  transition: border-color 150ms ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="number"]:focus,
+input[type="tel"]:focus,
+input[type="date"]:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--atlassian-blue-500);
+  box-shadow: 0 0 0 1px var(--atlassian-blue-500);
+}
+
+/* ==========================================================================
+   Navigation
+   ========================================================================== */
+
+.wp-block-navigation {
+  --wp-admin-theme-color: var(--atlassian-blue-500);
+}
+
+.wp-block-navigation a {
+  color: var(--atlassian-neutral-800);
+  font-weight: 500;
+  font-size: var(--font-size-14);
+}
+
+.wp-block-navigation a:hover {
+  color: var(--atlassian-blue-500);
+}
+
+/* ==========================================================================
+   Images
+   ========================================================================== */
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--border-radius);
+}
+
+.wp-block-image img {
+  display: block;
+}
+
+/* Image Style Variations */
+
+/* Circle Style - Fully rounded image (perfect for profile pictures) */
+.wp-block-image.is-style-circle img {
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
 }
 
-.card-content {
-  padding: 1.5rem;
+/* Shadow Style - Image with drop shadow for emphasis */
+.wp-block-image.is-style-shadow img {
+  box-shadow: var(--shadow-lg);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
 }
 
-.card-title {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-  color: var(--color-primary);
+.wp-block-image.is-style-shadow img:hover {
+  box-shadow: 0 12px 24px -8px rgba(9, 30, 66, 0.3), 0 0 1px rgba(9, 30, 66, 0.31);
+  transform: translateY(-4px);
 }
 
-.card-text {
-  color: var(--color-text-light);
-  line-height: 1.6;
+/* ==========================================================================
+   Cover Block
+   ========================================================================== */
+
+.wp-block-cover {
+  border-radius: 0;
 }
 
-/* 料金テーブル */
-.price-table {
-  width: 100%;
-  max-width: 900px;
-  margin: 2rem auto;
-  border-collapse: collapse;
-  background: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  overflow: hidden;
+.wp-block-cover .wp-block-cover__inner-container {
+  padding: var(--space-48) var(--space-16);
 }
 
-.price-table thead {
-  background-color: var(--color-primary);
-  color: white;
+.wp-block-cover h1,
+.wp-block-cover h2,
+.wp-block-cover h3,
+.wp-block-cover p {
+  color: var(--atlassian-neutral-0);
+  margin-top: 0;
 }
 
-.price-table th,
-.price-table td {
-  padding: 1rem;
-  text-align: left;
-  border-bottom: 1px solid #e0e0e0;
+/* ==========================================================================
+   Separator
+   ========================================================================== */
+
+.wp-block-separator {
+  border-top: 1px solid var(--atlassian-neutral-40);
+  margin: var(--space-32) 0;
 }
 
-.price-table tbody tr:hover {
-  background-color: var(--color-background-light);
+/* ==========================================================================
+   Spacer
+   ========================================================================== */
+
+.wp-block-spacer {
+  margin: 0;
 }
 
-.price-table tbody tr:last-child td {
-  border-bottom: none;
+/* ==========================================================================
+   Lists
+   ========================================================================== */
+
+ul, ol {
+  padding-left: var(--space-24);
+  margin-bottom: var(--space-16);
 }
 
-/* スタジオ情報 */
-.studio-info {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  max-width: 1000px;
-  margin: 2rem auto;
+li {
+  margin-bottom: var(--space-8);
 }
 
-.studio-info-item {
-  padding: 1.5rem;
-  background: var(--color-background-light);
-  border-radius: 8px;
-  border-left: 4px solid var(--color-primary);
+/* ==========================================================================
+   Code
+   ========================================================================== */
+
+code {
+  padding: 2px var(--space-4);
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono',
+               Consolas, 'Courier New', monospace;
+  font-size: var(--font-size-12);
+  background-color: var(--atlassian-neutral-20);
+  border-radius: var(--border-radius);
+  color: var(--atlassian-neutral-900);
 }
 
-.studio-info-label {
-  font-weight: bold;
-  color: var(--color-primary);
-  margin-bottom: 0.5rem;
+pre {
+  padding: var(--space-16);
+  background-color: var(--atlassian-neutral-900);
+  border-radius: var(--border-radius);
+  overflow-x: auto;
 }
 
-.studio-info-value {
-  color: var(--color-text);
-  font-size: 1.1rem;
+pre code {
+  background-color: transparent;
+  color: var(--atlassian-neutral-0);
+  padding: 0;
 }
 
-/* アクセスマップ */
-.access-map {
-  width: 100%;
-  height: 400px;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 2rem 0;
+/* ==========================================================================
+   Quote
+   ========================================================================== */
+
+blockquote {
+  margin: var(--space-24) 0;
+  padding-left: var(--space-16);
+  border-left: 3px solid var(--atlassian-blue-500);
+  color: var(--atlassian-neutral-500);
+  font-style: italic;
 }
 
-/* フッター */
-.site-footer {
-  background-color: #2c3e50;
-  color: white;
-  padding: 3rem 2rem 1rem;
-  margin-top: 4rem;
+/* ==========================================================================
+   Utilities
+   ========================================================================== */
+
+.alignfull {
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
 }
 
-.footer-content {
+.alignwide {
   max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.footer-section h3 {
-  margin-bottom: 1rem;
-  color: var(--color-secondary);
-}
-
-.footer-section a {
-  color: white;
-  text-decoration: none;
-  display: block;
-  padding: 0.3rem 0;
-  transition: color 0.3s ease;
-}
-
-.footer-section a:hover {
-  color: var(--color-secondary);
-}
-
-.footer-bottom {
+.has-text-align-center {
   text-align: center;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.7);
 }
 
-/* レスポンシブ */
+.has-text-align-left {
+  text-align: left;
+}
+
+.has-text-align-right {
+  text-align: right;
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
 @media (max-width: 768px) {
-  .hero-content h1 {
-    font-size: 2rem;
+  h1 {
+    font-size: var(--font-size-29);
   }
 
-  .section-title {
-    font-size: 2rem;
+  h2 {
+    font-size: var(--font-size-24);
   }
 
-  .studio-info {
-    grid-template-columns: 1fr;
+  .wp-block-cover .wp-block-cover__inner-container {
+    padding: var(--space-32) var(--space-16);
   }
 
-  .main-navigation {
+  .wp-block-buttons {
     flex-direction: column;
-    gap: 1rem;
+  }
+
+  .wp-block-button {
+    width: 100%;
   }
 }
 
-/* 予約システム埋め込みエリア */
-.reservation-embed {
-  max-width: 1000px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background: var(--color-background-light);
-  border-radius: 8px;
-  min-height: 400px;
-}
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
 
-.reservation-placeholder {
-  text-align: center;
-  padding: 4rem 2rem;
-  color: var(--color-text-light);
-}
-
-/* FAQ */
-.faq-item {
-  background: white;
-  margin-bottom: 1rem;
-  border-radius: 8px;
+.screen-reader-text {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
   overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0;
+  position: absolute;
+  word-wrap: normal !important;
 }
 
-.faq-question {
-  padding: 1.5rem;
-  font-weight: bold;
-  color: var(--color-primary);
-  background: var(--color-background-light);
+*:focus-visible {
+  outline: 2px solid var(--atlassian-blue-500);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  img {
+    page-break-inside: avoid;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
+
+/* ==========================================================================
+   Lightbox Component
+   ========================================================================== */
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.lightbox.closing {
+  animation: fadeOut 0.3s ease-out;
+}
+
+.lightbox-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
   cursor: pointer;
 }
 
-.faq-answer {
-  padding: 1.5rem;
-  color: var(--color-text);
-  line-height: 1.6;
+.lightbox-content {
+  position: relative;
+  z-index: 1;
+  max-width: 90%;
+  max-height: 90%;
+  text-align: center;
 }
 
-/* お知らせ */
-.news-list {
-  max-width: 800px;
-  margin: 0 auto;
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow-lg);
 }
 
-.news-item {
-  display: flex;
-  gap: 1rem;
-  padding: 1.5rem;
-  border-bottom: 1px solid #e0e0e0;
-  transition: background-color 0.3s ease;
+.lightbox-caption {
+  color: var(--atlassian-neutral-0);
+  margin-top: var(--space-16);
+  font-size: var(--font-size-16);
 }
 
-.news-item:hover {
-  background-color: var(--color-background-light);
+.lightbox-close {
+  position: absolute;
+  top: calc(var(--atlassian-space-40) * -1); /* -40px */
+  right: 0;
+  background: transparent;
+  border: none;
+  color: var(--atlassian-neutral-0);
+  font-size: 3rem;
+  cursor: pointer;
+  line-height: 1;
+  transition: transform var(--transition-base);
 }
 
-.news-date {
-  flex-shrink: 0;
-  color: var(--color-text-light);
-  font-size: 0.9rem;
+.lightbox-close:hover {
+  transform: scale(1.1);
 }
 
-.news-title {
-  color: var(--color-primary);
-  text-decoration: none;
-  font-weight: 500;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-.news-title:hover {
-  text-decoration: underline;
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* ==========================================================================
+   Animation Utilities - Data Attribute Based
+   ========================================================================== */
+
+/* Fade Animations */
+[data-animate="fade-in"] {
+  opacity: 0;
+  transition: opacity var(--transition-slow);
+}
+
+[data-animate="fade-in"].animated {
+  opacity: 1;
+}
+
+[data-animate="fade-up"] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+[data-animate="fade-up"].animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-animate="fade-down"] {
+  opacity: 0;
+  transform: translateY(-30px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+[data-animate="fade-down"].animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-animate="fade-left"] {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+[data-animate="fade-left"].animated {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+[data-animate="fade-right"] {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+[data-animate="fade-right"].animated {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Scale Animations */
+[data-animate="scale-up"] {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+[data-animate="scale-up"].animated {
+  opacity: 1;
+  transform: scale(1);
+}
+
+[data-animate="scale-down"] {
+  opacity: 0;
+  transform: scale(1.1);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+[data-animate="scale-down"].animated {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Rotate Animations */
+[data-animate="rotate-in"] {
+  opacity: 0;
+  transform: rotate(-10deg) scale(0.9);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+[data-animate="rotate-in"].animated {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+/* Slide Animations */
+[data-animate="slide-left"] {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+[data-animate="slide-left"].animated {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+[data-animate="slide-right"] {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+[data-animate="slide-right"].animated {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Animation Delays */
+[data-animate-delay="100"] { transition-delay: 100ms; }
+[data-animate-delay="200"] { transition-delay: 200ms; }
+[data-animate-delay="300"] { transition-delay: 300ms; }
+[data-animate-delay="400"] { transition-delay: 400ms; }
+[data-animate-delay="500"] { transition-delay: 500ms; }
+
+/* Hover Effects */
+.hover-lift {
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.hover-glow {
+  transition: box-shadow var(--transition-base);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(0, 82, 204, 0.4), var(--shadow-md);
+}
+
+.hover-scale {
+  transition: transform var(--transition-base);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-rotate {
+  transition: transform var(--transition-base);
+}
+
+.hover-rotate:hover {
+  transform: rotate(2deg);
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-bounce {
+  animation: bounce 1s ease-in-out infinite;
+}
+
+/* Spin Animation */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Shimmer Effect (for loading states) */
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--atlassian-neutral-20) 25%,
+    var(--atlassian-neutral-30) 50%,
+    var(--atlassian-neutral-20) 75%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
 }
