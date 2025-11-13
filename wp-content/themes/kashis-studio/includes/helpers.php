@@ -36,3 +36,87 @@ function kashis_get_studio_info(string $key): string {
 
     return isset($info[$key]) ? $info[$key] : '';
 }
+
+/**
+ * Display breadcrumbs navigation
+ *
+ * Outputs a hierarchical breadcrumb trail for improved navigation and SEO.
+ * Supports posts, pages, archives, categories, and custom post types.
+ *
+ * @since 1.0.8
+ * @return void
+ */
+function kashis_studio_breadcrumbs(): void {
+    if (is_front_page()) {
+        return;
+    }
+
+    $separator = ' › ';
+    $home_title = 'ホーム';
+
+    echo '<nav class="kashis-breadcrumbs" aria-label="パンくずリスト">';
+    echo '<a href="' . esc_url(home_url('/')) . '">' . esc_html($home_title) . '</a>';
+
+    if (is_category() || is_single()) {
+        echo $separator;
+        the_category(', ');
+        if (is_single()) {
+            echo $separator;
+            the_title();
+        }
+    } elseif (is_page()) {
+        if ($post = get_post()) {
+            if ($post->post_parent) {
+                $parent_id = $post->post_parent;
+                $breadcrumbs = array();
+
+                while ($parent_id) {
+                    $page = get_post($parent_id);
+                    $breadcrumbs[] = '<a href="' . esc_url(get_permalink($page->ID)) . '">' . esc_html(get_the_title($page->ID)) . '</a>';
+                    $parent_id = $page->post_parent;
+                }
+
+                $breadcrumbs = array_reverse($breadcrumbs);
+                foreach ($breadcrumbs as $crumb) {
+                    echo $separator . $crumb;
+                }
+            }
+            echo $separator;
+            the_title();
+        }
+    } elseif (is_search()) {
+        echo $separator . '検索結果';
+    } elseif (is_404()) {
+        echo $separator . 'ページが見つかりません';
+    } elseif (is_post_type_archive('studio_room')) {
+        echo $separator . 'スタジオルーム一覧';
+    } elseif (is_singular('studio_room')) {
+        echo $separator . '<a href="' . esc_url(get_post_type_archive_link('studio_room')) . '">スタジオルーム一覧</a>';
+        echo $separator;
+        the_title();
+    }
+
+    echo '</nav>';
+
+    // Add breadcrumb styles
+    ?>
+    <style>
+        .kashis-breadcrumbs {
+            padding: 1rem 0;
+            font-size: 0.875rem;
+            color: #5E6C84;
+        }
+
+        .kashis-breadcrumbs a {
+            color: #0052CC;
+            text-decoration: none;
+            transition: color 150ms ease;
+        }
+
+        .kashis-breadcrumbs a:hover {
+            color: #0747A6;
+            text-decoration: underline;
+        }
+    </style>
+    <?php
+}

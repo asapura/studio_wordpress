@@ -57,6 +57,15 @@ function kashis_studio_enqueue_styles(): void {
         $child_version,
         true // フッターで読み込み（ページレンダリングブロック防止）
     );
+
+    // 高度な機能JavaScript（お気に入り・比較機能）
+    wp_enqueue_script(
+        'kashis-studio-advanced-js',
+        get_stylesheet_directory_uri() . '/assets/js/advanced-features.js',
+        array(),
+        $child_version,
+        true
+    );
 }
 add_action('wp_enqueue_scripts', 'kashis_studio_enqueue_styles');
 
