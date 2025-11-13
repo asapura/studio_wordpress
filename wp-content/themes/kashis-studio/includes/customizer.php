@@ -196,6 +196,93 @@ function kashis_studio_customize_register(WP_Customize_Manager $wp_customize): v
 add_action('customize_register', 'kashis_studio_customize_register');
 
 /**
+ * Add customizer presets section
+ *
+ * Adds quick preset buttons for instant theme styling.
+ *
+ * @since 1.0.8
+ * @param WP_Customize_Manager $wp_customize Customizer object
+ * @return void
+ */
+function kashis_studio_customizer_presets(WP_Customize_Manager $wp_customize): void {
+    // Add Presets Section
+    $wp_customize->add_section('kashis_studio_presets', array(
+        'title' => __('クイックプリセット', 'kashis-studio'),
+        'description' => __('ワンクリックでテーマスタイルを変更', 'kashis-studio'),
+        'priority' => 5,
+    ));
+
+    // Add preset control (using custom HTML)
+    $wp_customize->add_setting('kashis_studio_preset_selector', array(
+        'default' => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+
+    $wp_customize->add_control('kashis_studio_preset_selector', array(
+        'label' => __('プリセットを選択', 'kashis-studio'),
+        'section' => 'kashis_studio_presets',
+        'type' => 'select',
+        'choices' => array(
+            '' => '選択してください',
+            'default' => 'デフォルト（ブルー）',
+            'warm' => 'ウォーム（オレンジ）',
+            'cool' => 'クール（シアン）',
+            'professional' => 'プロフェッショナル（ダーク）',
+            'elegant' => 'エレガント（パープル）',
+        ),
+    ));
+}
+add_action('customize_register', 'kashis_studio_customizer_presets');
+
+/**
+ * Apply preset colors
+ *
+ * Applies preset color schemes when selected in customizer.
+ *
+ * @since 1.0.8
+ * @return void
+ */
+function kashis_studio_apply_preset(): void {
+    if (!isset($_GET['kashis_preset']) || !current_user_can('customize')) {
+        return;
+    }
+
+    $preset = sanitize_text_field($_GET['kashis_preset']);
+
+    $presets = array(
+        'default' => array(
+            'primary' => '#0052CC',
+            'secondary' => '#00875A',
+        ),
+        'warm' => array(
+            'primary' => '#FF5630',
+            'secondary' => '#FFAB00',
+        ),
+        'cool' => array(
+            'primary' => '#00B8D9',
+            'secondary' => '#2684FF',
+        ),
+        'professional' => array(
+            'primary' => '#172B4D',
+            'secondary' => '#42526E',
+        ),
+        'elegant' => array(
+            'primary' => '#6554C0',
+            'secondary' => '#8777D9',
+        ),
+    );
+
+    if (isset($presets[$preset])) {
+        set_theme_mod('kashis_studio_primary_color', $presets[$preset]['primary']);
+        set_theme_mod('kashis_studio_secondary_color', $presets[$preset]['secondary']);
+    }
+
+    wp_safe_redirect(admin_url('customize.php'));
+    exit;
+}
+add_action('admin_init', 'kashis_studio_apply_preset');
+
+/**
  * Output custom CSS based on customizer settings
  *
  * Generates dynamic CSS from customizer values and outputs it in the head.
