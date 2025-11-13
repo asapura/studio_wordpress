@@ -64,6 +64,9 @@ require_once get_stylesheet_directory() . '/includes/shortcodes.php';
 // ブロックパターン
 require_once get_stylesheet_directory() . '/includes/block-patterns.php';
 
+// カスタムブロック
+require_once get_stylesheet_directory() . '/includes/blocks.php';
+
 // 管理画面とヘルプページ
 require_once get_stylesheet_directory() . '/includes/admin.php';
 
