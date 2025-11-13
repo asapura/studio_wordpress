@@ -256,6 +256,60 @@ a:hover {
   background-color: var(--atlassian-blue-50);
 }
 
+/* Button Style Variations - Atlassian Design System */
+
+/* Secondary Button - Subtle blue appearance */
+.wp-block-button.is-style-secondary .wp-block-button__link {
+  color: var(--atlassian-blue-500);
+  background-color: var(--atlassian-blue-50);
+}
+
+.wp-block-button.is-style-secondary .wp-block-button__link:hover {
+  background-color: var(--atlassian-blue-100);
+  color: var(--atlassian-blue-600);
+}
+
+/* Subtle Button - Neutral appearance */
+.wp-block-button.is-style-subtle .wp-block-button__link {
+  color: var(--atlassian-neutral-800);
+  background-color: var(--atlassian-neutral-20);
+}
+
+.wp-block-button.is-style-subtle .wp-block-button__link:hover {
+  background-color: var(--atlassian-neutral-30);
+  color: var(--atlassian-neutral-900);
+}
+
+/* Success Button - Green for positive actions */
+.wp-block-button.is-style-success .wp-block-button__link {
+  color: var(--atlassian-neutral-0);
+  background-color: var(--atlassian-green-500);
+}
+
+.wp-block-button.is-style-success .wp-block-button__link:hover {
+  background-color: var(--atlassian-green-400);
+}
+
+/* Warning Button - Yellow for cautionary actions */
+.wp-block-button.is-style-warning .wp-block-button__link {
+  color: var(--atlassian-neutral-900);
+  background-color: var(--atlassian-yellow-400);
+}
+
+.wp-block-button.is-style-warning .wp-block-button__link:hover {
+  background-color: #FFB700;
+}
+
+/* Danger Button - Red for destructive actions */
+.wp-block-button.is-style-danger .wp-block-button__link {
+  color: var(--atlassian-neutral-0);
+  background-color: var(--atlassian-red-500);
+}
+
+.wp-block-button.is-style-danger .wp-block-button__link:hover {
+  background-color: var(--atlassian-red-400);
+}
+
 /* ==========================================================================
    Cards & Groups
    ========================================================================== */
@@ -272,6 +326,41 @@ a:hover {
 .has-neutral-0-background-color.wp-block-group:hover {
   box-shadow: var(--shadow-md);
   transition: box-shadow 200ms ease;
+}
+
+/* Group Style Variations - Card Styles */
+
+/* Elevated Style - Card with shadow (floating appearance) */
+.wp-block-group.is-style-elevated {
+  box-shadow: var(--shadow-md);
+  padding: var(--space-24);
+  background-color: var(--atlassian-neutral-0);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.wp-block-group.is-style-elevated:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+/* Bordered Style - Card with border instead of shadow */
+.wp-block-group.is-style-bordered {
+  border: 2px solid var(--atlassian-neutral-40);
+  padding: var(--space-24);
+  background-color: var(--atlassian-neutral-0);
+  transition: border-color var(--transition-base);
+}
+
+.wp-block-group.is-style-bordered:hover {
+  border-color: var(--atlassian-blue-300);
+}
+
+/* Flat Style - Simple card with background color only */
+.wp-block-group.is-style-flat {
+  background-color: var(--atlassian-neutral-10);
+  padding: var(--space-24);
+  box-shadow: none;
+  border: none;
 }
 
 /* ==========================================================================
@@ -375,6 +464,26 @@ img {
 
 .wp-block-image img {
   display: block;
+}
+
+/* Image Style Variations */
+
+/* Circle Style - Fully rounded image (perfect for profile pictures) */
+.wp-block-image.is-style-circle img {
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+/* Shadow Style - Image with drop shadow for emphasis */
+.wp-block-image.is-style-shadow img {
+  box-shadow: var(--shadow-lg);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.wp-block-image.is-style-shadow img:hover {
+  box-shadow: 0 12px 24px -8px rgba(9, 30, 66, 0.3), 0 0 1px rgba(9, 30, 66, 0.31);
+  transform: translateY(-4px);
 }
 
 /* ==========================================================================
@@ -652,4 +761,208 @@ blockquote {
 @keyframes fadeOut {
   from { opacity: 1; }
   to { opacity: 0; }
+}
+
+/* ==========================================================================
+   Animation Utilities - Data Attribute Based
+   ========================================================================== */
+
+/* Fade Animations */
+[data-animate="fade-in"] {
+  opacity: 0;
+  transition: opacity var(--transition-slow);
+}
+
+[data-animate="fade-in"].animated {
+  opacity: 1;
+}
+
+[data-animate="fade-up"] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+[data-animate="fade-up"].animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-animate="fade-down"] {
+  opacity: 0;
+  transform: translateY(-30px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+[data-animate="fade-down"].animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-animate="fade-left"] {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+[data-animate="fade-left"].animated {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+[data-animate="fade-right"] {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+[data-animate="fade-right"].animated {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Scale Animations */
+[data-animate="scale-up"] {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+[data-animate="scale-up"].animated {
+  opacity: 1;
+  transform: scale(1);
+}
+
+[data-animate="scale-down"] {
+  opacity: 0;
+  transform: scale(1.1);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+[data-animate="scale-down"].animated {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Rotate Animations */
+[data-animate="rotate-in"] {
+  opacity: 0;
+  transform: rotate(-10deg) scale(0.9);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+[data-animate="rotate-in"].animated {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+/* Slide Animations */
+[data-animate="slide-left"] {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+[data-animate="slide-left"].animated {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+[data-animate="slide-right"] {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+[data-animate="slide-right"].animated {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Animation Delays */
+[data-animate-delay="100"] { transition-delay: 100ms; }
+[data-animate-delay="200"] { transition-delay: 200ms; }
+[data-animate-delay="300"] { transition-delay: 300ms; }
+[data-animate-delay="400"] { transition-delay: 400ms; }
+[data-animate-delay="500"] { transition-delay: 500ms; }
+
+/* Hover Effects */
+.hover-lift {
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.hover-glow {
+  transition: box-shadow var(--transition-base);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(0, 82, 204, 0.4), var(--shadow-md);
+}
+
+.hover-scale {
+  transition: transform var(--transition-base);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-rotate {
+  transition: transform var(--transition-base);
+}
+
+.hover-rotate:hover {
+  transform: rotate(2deg);
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-bounce {
+  animation: bounce 1s ease-in-out infinite;
+}
+
+/* Spin Animation */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Shimmer Effect (for loading states) */
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--atlassian-neutral-20) 25%,
+    var(--atlassian-neutral-30) 50%,
+    var(--atlassian-neutral-20) 75%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
 }

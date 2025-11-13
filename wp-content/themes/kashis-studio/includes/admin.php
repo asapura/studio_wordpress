@@ -12,3 +12,4 @@
 require_once get_stylesheet_directory() . '/includes/admin-settings.php';
 require_once get_stylesheet_directory() . '/includes/admin-dummy-data.php';
 require_once get_stylesheet_directory() . '/includes/admin-help.php';
+require_once get_stylesheet_directory() . '/includes/admin-dashboard-widget.php';

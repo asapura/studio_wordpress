@@ -161,6 +161,7 @@
 
   // ==========================================================================
   // スクロールアニメーション（Intersection Observer）
+  // Enhanced with data-animate attribute support
   // ==========================================================================
 
   function initScrollAnimations() {
@@ -173,16 +174,31 @@
     const observer = new IntersectionObserver(function(entries) {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('fade-in');
+          // Support for new data-animate attributes
+          if (entry.target.hasAttribute('data-animate')) {
+            entry.target.classList.add('animated');
+          } else {
+            // Fallback for legacy elements
+            entry.target.classList.add('fade-in');
+          }
           observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
 
-    // アニメーションさせたい要素を監視
-    const animateElements = document.querySelectorAll('.card, .feature-item, .news-item, .timeline-item');
-    animateElements.forEach(el => {
+    // Monitor elements with data-animate attribute
+    const dataAnimateElements = document.querySelectorAll('[data-animate]');
+    dataAnimateElements.forEach(el => {
       observer.observe(el);
+    });
+
+    // Monitor legacy animation classes for backward compatibility
+    const legacyAnimateElements = document.querySelectorAll('.card, .feature-item, .news-item, .timeline-item');
+    legacyAnimateElements.forEach(el => {
+      // Only observe if not already handled by data-animate
+      if (!el.hasAttribute('data-animate')) {
+        observer.observe(el);
+      }
     });
   }
 
