@@ -70,6 +70,9 @@ require_once get_stylesheet_directory() . '/includes/blocks.php';
 // カスタマイザー設定
 require_once get_stylesheet_directory() . '/includes/customizer.php';
 
+// 高度なカスタマイザー設定
+require_once get_stylesheet_directory() . '/includes/customizer-advanced.php';
+
 // テーマアクティベーション
 require_once get_stylesheet_directory() . '/includes/theme-activation.php';
 
@@ -78,6 +81,9 @@ require_once get_stylesheet_directory() . '/includes/block-showcase.php';
 
 // 管理画面とヘルプページ
 require_once get_stylesheet_directory() . '/includes/admin.php';
+
+// 強化されたサンプルデータ生成
+require_once get_stylesheet_directory() . '/includes/sample-data-enhanced.php';
 
 /**
  * Get theme information
